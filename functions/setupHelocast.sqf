@@ -28,6 +28,8 @@ _helo = _this;
 //jumpOffset: offsets from vehicle center of where to jump from (OBE 2019-12-24)
 //boatCoords: where does the boat go relative to the helo center
 //recover: can the helo reasonably recover a CRRC
+//jumpRotation: aircraft relative rotation to face proper direction when jumping
+//altOffset: correction factor for aircraft altitiude (defined in delta desired altitude in meters)
 
 switch(typeof _helo) do
 {
@@ -185,18 +187,14 @@ switch(typeof _helo) do
 
 if(_kill) exitWith
 {
-	//diag_log format["---Helocast debug - Exited Helocast because of unsupported type: %1", typeof _helo];
+	diag_log format["---Helocast debug - Exited Helocast because of unsupported type: %1", typeof _helo];
 };
 
-//===== DEFINE SUPPORTED CRRCS =====
-
-boatArray=["o_lifeboat","b_t_lifeboat","b_t_boat_transport_01_f","b_boat_transport_01_f","b_lifeboat","o_boat_transport_01_f","o_g_boat_transport_01_f","b_g_boat_transport_01_f","i_boat_transport_01_f","i_g_boat_transport_01_f"];
-
-_helo addEventHandler ["HandleDamage", {if (_boat iskindof 'Rubber_duck_base_F') then { 0; } else { _this select 2; };}];		//disable damage from assaultboats - Might be bale to pass boat array to this
+//======== PREVENT HELOS FROM TAKING DAMAGE FROM BOATS ===============
+_helo addEventHandler ["HandleDamage", {if ([_this select 3] call fatLurch_fnc_isBoat) then { 0; } else { _this select 2; };}];	
 
 //===== CREATE ACTIONS ON HELO =====
 //Updated code to use conditions to show/hide actions in lieu of adding/deleting them
-
 
 //_target = _helo
 //_this = calling player
@@ -207,9 +205,6 @@ _helo addEventHandler ["HandleDamage", {if (_boat iskindof 'Rubber_duck_base_F')
 //New 2019-12-26
 [_helo, ["Load CRRC into Helo", "[_this select 0] call fatLurch_fnc_loadBoat;",nil,10, false, false, "","[_target] call fatLurch_fnc_loadableBoat select 0;", 8]] remoteExec ["addAction",0, true];
 [_helo, ["Unload CRRC", "[_this select 0] call fatLurch_fnc_unloadBoat;",nil,10, false, false, "","[_target, _this] call fatLurch_fnc_canUnload;", 8]] remoteExec ["addAction",0, true];
-
-
-//========== MAIN CODE =============
 
 //Add a CRRC if checked in the Eden attribute for the helo
 _addBoat = _helo getVariable ["addBoat", false];

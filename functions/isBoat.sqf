@@ -18,7 +18,8 @@ if([boat] call fatLurch_fnc_isBoat) then...
 
 //=========================== DEFINE SUITABLE BOATS ========================
 
-_boatArray=["o_lifeboat","b_t_lifeboat","b_t_boat_transport_01_f","b_boat_transport_01_f","b_lifeboat","o_boat_transport_01_f","o_g_boat_transport_01_f","b_g_boat_transport_01_f","i_boat_transport_01_f","i_g_boat_transport_01_f"];
+// *** MUST BE LOWER CASE!!! ***
+_boatArray=["zodiaccrrcboat","o_lifeboat","b_t_lifeboat","b_t_boat_transport_01_f","b_boat_transport_01_f","b_lifeboat","o_boat_transport_01_f","o_g_boat_transport_01_f","b_g_boat_transport_01_f","i_boat_transport_01_f","i_g_boat_transport_01_f"];
 
 //===================== CODE =====================
 _boat = toLower(typeOf (_this select 0));
