@@ -31,7 +31,7 @@ _helo = _this;
 
 switch(typeof _helo) do
 {
-	//RHS CH-47 series
+	//RHS CH-47 series ===========================
 	case "RHS_CH_47F_10";
 	case "RHS_CH_47F_light";
 	case "RHS_CH_47F": 
@@ -44,7 +44,9 @@ switch(typeof _helo) do
 		_helo setVariable ["jumpRotation", 180, true];
 	};
 	
-	//RHS CH-53 series
+	
+	
+	//RHS CH-53 series ===========================
 	case "rhsusf_CH53E_USMC";
 	case "rhsusf_CH53E_USMC_D": 
 	{
@@ -56,7 +58,7 @@ switch(typeof _helo) do
 		_helo setVariable ["jumpRotation", 180, true];
 	};
 	
-	//RHS UH-60 Series
+	//RHS UH-60 Series ===========================
 	case "RHS_UH60M";
 	case "RHS_UH60M_d";
 	case "RHS_UH60M_ESSS_d";
@@ -75,10 +77,10 @@ switch(typeof _helo) do
 		_helo setvariable ["ramp",["DoorLB", "DoorRB"], true];
 		_helo setVariable ["jumpOffset",[2.5,1,0], true];
 		_helo setVariable ["recover", false, true];
-		_helo setVariable ["jumpRotation", 90, true];
+		_helo setVariable ["jumpRotation", -90, true];
 	};
 	
-	//Vanilla CH-67 Series
+	//Vanilla CH-67 Series ===========================
 	case "B_Heli_Transport_03_F";
 	case "B_Heli_Transport_03_unarmed_F";
 	case "B_Heli_Transport_03_black_F";	
@@ -90,6 +92,58 @@ switch(typeof _helo) do
 		_helo setVariable ["jumpOffset",[0,-6.2,0.3], true];
 		_helo setVariable ["recover", false, true];	//This SHOULD work but the -67s sink when they touch a boat...
 		_helo setVariable ["jumpRotation", 180, true];
+	};
+	
+	//CUP H-60 FFV ===========================
+	case "CUP_B_UH60M_FFV_US";	
+	case "CUP_B_UH60M_Unarmed_FFV_US";
+	case "CUP_B_UH60M_Unarmed_FFV_MEV_US":
+	{
+		_helo setvariable ["boatCoords", [0,1.8,-0.67], true];
+		_helo setvariable ["push",false, true];
+		_helo setvariable ["ramp",[], true];
+		_helo setVariable ["jumpOffset",[0,-5,1], true];
+		_helo setVariable ["recover", false, true];
+		_helo setVariable ["jumpRotation", -90, true];
+	};
+	
+	//CUP H-60 ===========================
+	case "CUP_B_MH60L_DAP_2x_US";
+	case "CUP_B_MH60L_DAP_4x_US";
+	case "CUP_B_UH60M_US";
+	case "CUP_B_UH60M_Unarmed_US";
+	case "CUP_B_UH60S_USN";
+	case "CUP_B_MH60L_DAP_2x_USN";
+	case "CUP_B_MH60L_DAP_4x_USN":
+	{
+		_helo setvariable ["boatCoords", [0,1.8,-0.67], true];
+		_helo setvariable ["push",false, true];
+		_helo setvariable ["ramp",["Doors"], true];
+		_helo setVariable ["jumpOffset",[0,-5,1], true];
+		_helo setVariable ["recover", false, true];
+		_helo setVariable ["jumpRotation", -90, true];
+	};
+	
+	//CUP MH-60S FFV ===========================
+	case "CUP_B_MH60S_FFV_USMC":
+	{
+		_helo setvariable ["boatCoords", [0,1.8,-0.75], true];
+		_helo setvariable ["push",false, true];
+		_helo setvariable ["ramp",[], true];
+		_helo setVariable ["jumpOffset",[0,-5,1], true];
+		_helo setVariable ["recover", false, true];
+		_helo setVariable ["jumpRotation", -90, true];
+	};
+	
+	//CUP MH-60S ===========================
+	case "CUP_B_MH60S_USMC":
+	{
+		_helo setvariable ["boatCoords", [0,1.8,-0.75], true];
+		_helo setvariable ["push",false, true];
+		_helo setvariable ["ramp",["Doors"], true];
+		_helo setVariable ["jumpOffset",[0,-5,1], true];
+		_helo setVariable ["recover", false, true];
+		_helo setVariable ["jumpRotation", -90, true];
 	};
 
 	default 

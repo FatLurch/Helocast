@@ -88,6 +88,10 @@ class CfgPatches
 			{
 				file = "Helocast\functions\eject.sqf";
 			};
+			class testBoat
+			{
+				file = "Helocast\functions\testBoat.sqf";
+			};
 		};
 	};
 };
