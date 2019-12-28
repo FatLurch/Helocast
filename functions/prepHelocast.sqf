@@ -18,9 +18,11 @@ call fatLurch_fnc_prepHelocast;
 
 _helo =_this select 0;
 
+_altOffset = _helo getVariable["altOffset", 0];
+
 //Add conditional here to use decel function or the commands below
 [_helo, 8] remoteExec ["limitSpeed",_helo];
-[_helo, 6] remoteExec ["flyInHeight",_helo];
+[_helo, 6 + _altOffset] remoteExec ["flyInHeight",_helo];	//Some of the CUP assets seem to be REALLY far from the intended altitudes
 
 
 if(count(_helo getVariable "ramp") > 0) then	

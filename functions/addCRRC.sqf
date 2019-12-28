@@ -31,5 +31,5 @@ if ((!_hasBoat)&&(!isNil {_helo getVariable "boatCoords";})) then
 };
 
 
-[boat, _helo] remoteExec ["disableCollisionWith", 0];	
-[_helo, boat] remoteExec ["disableCollisionWith", 0];	//Needs to run on the owner of boat and helo
+[boat, _helo] remoteExec ["disableCollisionWith", owner boat, true];	
+[_helo, boat] remoteExec ["disableCollisionWith", owner _helo, true];	//Needs to run on the owner of boat and helo

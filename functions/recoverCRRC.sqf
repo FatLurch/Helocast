@@ -24,9 +24,6 @@ _helo setvariable ["boat",_boat, true];
 [_boat, _helo] remoteExec ["disableCollisionWith", owner _boat];	
 [_boat, _helo] remoteExec ["disableCollisionWith", owner _helo];	//Needs to run on the owner of boat and helo
 
-//Add code to reference array of assault boats (ref array "in" command)
-_helo addEventHandler ["HandleDamage", {if (_boat iskindof 'Rubber_duck_base_F') then { 0; } else { _this select 2; };}];		//disable damage from assaultboats
-
 _coords = _helo getVariable["boatCoords", [0,0,0]];
 
 [_boat,  [_helo,_coords]] remoteExec ["attachto", owner _boat];

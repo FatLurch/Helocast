@@ -58,8 +58,8 @@ _jumpers= crew _helo;
 _helo setvariable ["boat",nil, true];
 _helo setVariable ["readyHelocast", nil, true];
 
-[_boat, _helo] remoteExec ["enableCollisionWith", owner _boat];	
-[_boat, _helo] remoteExec ["enableCollisionWith", owner _helo];	//Needs to run on the owner of boat and helo
+[_boat, _helo] remoteExec ["enableCollisionWith", owner _boat, true];	
+[_boat, _helo] remoteExec ["enableCollisionWith", owner _helo, true];	//Needs to run on the owner of boat and helo
 
 rot=_helo getVariable ["jumpRotation", 0];
 

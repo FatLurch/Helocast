@@ -105,6 +105,7 @@ switch(typeof _helo) do
 		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
+		_helo setVariable ["altOffset", -1, true];
 	};
 	
 	//CUP H-60 ===========================
@@ -122,6 +123,7 @@ switch(typeof _helo) do
 		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
+		_helo setVariable ["altOffset", -1, true];
 	};
 	
 	//CUP MH-60S FFV ===========================
@@ -133,6 +135,7 @@ switch(typeof _helo) do
 		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
+		_helo setVariable ["altOffset", -1, true];
 	};
 	
 	//CUP MH-60S ===========================
@@ -144,7 +147,35 @@ switch(typeof _helo) do
 		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
+		_helo setVariable ["altOffset", -1, true];
+		
 	};
+
+
+	//CUP MH-47 ===========================
+	case "CUP_B_MH47E_USA":
+	{
+		_helo setvariable ["boatCoords", [0,-3.5,2.1], true];
+		_helo setvariable ["push",true, true];
+		_helo setvariable ["ramp",[], true];	/*"Ani_Ramp" is the ramp, however it's logic is inverted from all other ramps TODO: Add inversion bit setting for ramp with a default of false*/
+		_helo setVariable ["jumpOffset",[0,-5,1], true];
+		_helo setVariable ["recover", true, true];
+		_helo setVariable ["jumpRotation", 180, true];
+		_helo setVariable ["altOffset", -4, true];
+	};
+
+
+	//CUP CH-53 ===========================
+	case "CUP_B_CH53E_USMC":
+	{
+		_helo setvariable ["boatCoords", [0,1,-2.82], true];
+		_helo setvariable ["push",true, true];
+		_helo setvariable ["ramp",["ramp_bottom","ramp_top"], true];
+		_helo setVariable ["jumpOffset",[0,-5,1], true];
+		_helo setVariable ["recover", true, true];
+		_helo setVariable ["jumpRotation", 180, true];
+	};
+
 
 	default 
 	{
@@ -160,6 +191,8 @@ if(_kill) exitWith
 //===== DEFINE SUPPORTED CRRCS =====
 
 boatArray=["o_lifeboat","b_t_lifeboat","b_t_boat_transport_01_f","b_boat_transport_01_f","b_lifeboat","o_boat_transport_01_f","o_g_boat_transport_01_f","b_g_boat_transport_01_f","i_boat_transport_01_f","i_g_boat_transport_01_f"];
+
+_helo addEventHandler ["HandleDamage", {if (_boat iskindof 'Rubber_duck_base_F') then { 0; } else { _this select 2; };}];		//disable damage from assaultboats - Might be bale to pass boat array to this
 
 //===== CREATE ACTIONS ON HELO =====
 //Updated code to use conditions to show/hide actions in lieu of adding/deleting them
