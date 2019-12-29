@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-26
- -- Last Edit: 2019-12-26
+ -- Last Edit: 2019-12-28
  -- Parameters: [boat] - the boat to test for suitability
  -- Returns: Boolean
 

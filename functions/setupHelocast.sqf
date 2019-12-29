@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-02-23
- -- Last Edit: 2019-12-26
+ -- Last Edit: 2019-12-28
  -- Parameters: [helo] - the helo to configure for helocasting
  -- Returns: Nothing
 
@@ -25,7 +25,7 @@ _helo = _this;
 
 //push: does the boat need to be slid aft until it falls out of the helo?
 //ramp: an array of the animation name of the ramp (if the helo has a ramp, otherwise set as empty array)
-//jumpOffset: offsets from vehicle center of where to jump from (OBE 2019-12-24)
+//jumpOffset: offsets from vehicle "pos cargo". Used to get around geometry issues
 //boatCoords: where does the boat go relative to the helo center
 //recover: can the helo reasonably recover a CRRC
 //jumpRotation: aircraft relative rotation to face proper direction when jumping
@@ -41,7 +41,6 @@ switch(typeof _helo) do
 		_helo setvariable ["boatCoords", [0,-3.4,-1.3], true];
 		_helo setvariable ["push",TRUE, true];
 		_helo setvariable ["ramp",["ramp"], true];
-		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", true, true];
 		_helo setVariable ["jumpRotation", 180, true];
 	};
@@ -55,7 +54,6 @@ switch(typeof _helo) do
 		_helo setvariable ["boatCoords", [0,0.8,-2.59], true];
 		_helo setvariable ["push",TRUE, true];
 		_helo setvariable ["ramp",["ramp_bottom", "ramp_top"], true];
-		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", true, true];
 		_helo setVariable ["jumpRotation", 180, true];
 	};
@@ -77,12 +75,12 @@ switch(typeof _helo) do
 		_helo setvariable ["boatCoords", [0, 1.8, -1.45], true];
 		_helo setvariable ["push",FALSE, true];
 		_helo setvariable ["ramp",["DoorLB", "DoorRB"], true];
-		_helo setVariable ["jumpOffset",[2.5,1,0], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
 	};
 	
-	//Vanilla CH-67 Series ===========================
+	//CH-67 Series ===========================
+	case"ej_MH67";
 	case "B_Heli_Transport_03_F";
 	case "B_Heli_Transport_03_unarmed_F";
 	case "B_Heli_Transport_03_black_F";	
@@ -91,7 +89,6 @@ switch(typeof _helo) do
 		_helo setvariable ["boatCoords", [0, -2.1, -0.6], true];
 		_helo setvariable ["push",TRUE, true];
 		_helo setvariable ["ramp",["Door_rear_source"], true];
-		_helo setVariable ["jumpOffset",[0,-6.2,0.3], true];
 		_helo setVariable ["recover", false, true];	//This SHOULD work but the -67s sink when they touch a boat...
 		_helo setVariable ["jumpRotation", 180, true];
 	};
@@ -104,7 +101,6 @@ switch(typeof _helo) do
 		_helo setvariable ["boatCoords", [0,1.8,-0.67], true];
 		_helo setvariable ["push",false, true];
 		_helo setvariable ["ramp",[], true];
-		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
 		_helo setVariable ["altOffset", -1, true];
@@ -122,7 +118,6 @@ switch(typeof _helo) do
 		_helo setvariable ["boatCoords", [0,1.8,-0.67], true];
 		_helo setvariable ["push",false, true];
 		_helo setvariable ["ramp",["Doors"], true];
-		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
 		_helo setVariable ["altOffset", -1, true];
@@ -134,7 +129,6 @@ switch(typeof _helo) do
 		_helo setvariable ["boatCoords", [0,1.8,-0.75], true];
 		_helo setvariable ["push",false, true];
 		_helo setvariable ["ramp",[], true];
-		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
 		_helo setVariable ["altOffset", -1, true];
@@ -146,7 +140,6 @@ switch(typeof _helo) do
 		_helo setvariable ["boatCoords", [0,1.8,-0.75], true];
 		_helo setvariable ["push",false, true];
 		_helo setvariable ["ramp",["Doors"], true];
-		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
 		_helo setVariable ["altOffset", -1, true];
@@ -160,7 +153,6 @@ switch(typeof _helo) do
 		_helo setvariable ["boatCoords", [0,-3.5,2.1], true];
 		_helo setvariable ["push",true, true];
 		_helo setvariable ["ramp",[], true];	/*"Ani_Ramp" is the ramp, however it's logic is inverted from all other ramps TODO: Add inversion bit setting for ramp with a default of false*/
-		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", true, true];
 		_helo setVariable ["jumpRotation", 180, true];
 		_helo setVariable ["altOffset", -4, true];
@@ -173,11 +165,41 @@ switch(typeof _helo) do
 		_helo setvariable ["boatCoords", [0,1,-2.82], true];
 		_helo setvariable ["push",true, true];
 		_helo setvariable ["ramp",["ramp_bottom","ramp_top"], true];
-		_helo setVariable ["jumpOffset",[0,-5,1], true];
 		_helo setVariable ["recover", true, true];
 		_helo setVariable ["jumpRotation", 180, true];
 	};
 
+	//EricJ H-60s ===========================
+	case "ej_MH60L";
+	case "ej_MH60M";
+	case "ej_UH60M_NATO";
+	case "ej_UH60M_U";
+	case "ej_UH60M_UT";
+	case "ej_MH60SI2";
+	case "ej_MH60SI";
+	case "ej_MH60S":
+	{
+		_helo setvariable ["boatCoords", [0,1.62,-1.44], true];
+		_helo setvariable ["push",false, true];
+		_helo setvariable ["ramp",["RDoor","LDoor"], true];
+		_helo setVariable ["jumpOffset",[0,-0.5,0], true];
+		_helo setVariable ["recover", false, true];
+		_helo setVariable ["jumpRotation", -90, true];
+		_helo setVariable ["altOffset", -1.5, true];
+	};
+	
+	//EricJ H-92s ===========================	
+	case "ej_UH92";
+	case "ej_UH92_NATO";
+	case "ej_MH92":
+	{
+		_helo setvariable ["boatCoords", [0,2.2,-0.78], true];
+		_helo setvariable ["push",false, true];
+		_helo setvariable ["ramp",["RDoor","LDoor"], true];
+		_helo setVariable ["recover", false, true];
+		_helo setVariable ["jumpRotation", -90, true];
+		_helo setVariable ["altOffset", -1.5, true];
+	};
 
 	default 
 	{

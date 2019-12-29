@@ -19,7 +19,7 @@
 
 _helo =_this select 0;
 _boat = (_helo) getVariable "boat";	//get reference to the specific boat associated with the helo
-_jumpOffset = (_helo) getVariable "jumpOffset";		//TODO not currently used
+_jumpOffset = (_helo) getVariable ["jumpOffset", [0,0,0]];	
 
 [_boat, false] remoteExec ["allowDamage", owner _boat];	
 [_helo, false] remoteExec ["allowDamage", owner _helo];	
@@ -68,7 +68,7 @@ rot=_helo getVariable ["jumpRotation", 0];
 	//Eject all non-flight crew
 	{
 		//===== Begin clusterfuck to eject crew =====
-		[_x, _helo, rot] remoteExec ["fatLurch_fnc_eject", 0, true];
+		[_x, _helo, rot, _jumpOffset] remoteExec ["fatLurch_fnc_eject", 0, true];
 		sleep 1 + random 0.4;
 	};
 

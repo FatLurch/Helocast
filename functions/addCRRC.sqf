@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-24
- -- Last Edit: 2019-12-25
+ -- Last Edit: 2019-12-28
  -- Parameters: [helo] - the helo to add the boat to 
  -- Returns: Nothing
 
