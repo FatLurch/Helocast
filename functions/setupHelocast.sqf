@@ -77,6 +77,7 @@ switch(typeof _helo) do
 		_helo setvariable ["ramp",["DoorLB", "DoorRB"], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
+		_helo setVariable ["altOffset", -1, true];
 	};
 	
 	//CH-67 Series ===========================
@@ -152,10 +153,11 @@ switch(typeof _helo) do
 	{
 		_helo setvariable ["boatCoords", [0,-3.5,2.1], true];
 		_helo setvariable ["push",true, true];
-		_helo setvariable ["ramp",[], true];	/*"Ani_Ramp" is the ramp, however it's logic is inverted from all other ramps TODO: Add inversion bit setting for ramp with a default of false*/
+		_helo setvariable ["ramp",["Ani_Ramp"], true];	
 		_helo setVariable ["recover", true, true];
 		_helo setVariable ["jumpRotation", 180, true];
 		_helo setVariable ["altOffset", -4, true];
+		_helo setVariable ["rampInvert", true, true];
 	};
 
 
@@ -199,6 +201,76 @@ switch(typeof _helo) do
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
 		_helo setVariable ["altOffset", -1.5, true];
+	};
+	
+	//Konyo MH-47 Ramp ===========================	
+	case "kyo_MH47E_Ramp":
+	{
+		_helo setvariable ["boatCoords", [0.1,-1.42,-0.48], true];
+		_helo setvariable ["push",true, true];
+		_helo setvariable ["ramp",[], true];
+		_helo setVariable ["recover", true, true];
+		_helo setVariable ["jumpRotation", 180, true];
+		_helo setVariable ["altOffset", -1.5, true];
+		_helo setVariable ["rampInvert", true, true];			
+	};
+	//Konyo MH-47 Ramp ===========================	
+	case "kyo_MH47E_base":
+	{
+		_helo setvariable ["boatCoords", [0.1,-1.42,-0.48], true];
+		_helo setvariable ["push",true, true];
+		_helo setvariable ["ramp",["Ani_Ramp"], true];
+		_helo setVariable ["recover", true, true];
+		_helo setVariable ["jumpRotation", 180, true];
+		_helo setVariable ["altOffset", -1.5, true];
+		_helo setVariable ["rampInvert", true, true];	
+		_helo setVariable ["jumpOffset", [0,-6,-1], true];			
+	};
+
+	//Konyo MH-47 HC ===========================
+	case "kyo_MH47E_HC":
+	{
+		_helo setvariable ["boatCoords", [0.1,-1.46,-0.95], true];
+		_helo setvariable ["push",true, true];
+		_helo setvariable ["ramp",["Ani_Ramp"], true];
+		_helo setVariable ["recover", true, true];
+		_helo setVariable ["jumpRotation", 180, true];
+		_helo setVariable ["altOffset", -1.5, true];
+		_helo setVariable ["rampInvert", true, true];	
+		_helo setVariable ["jumpOffset", [0,-5.3,-1.5], true];		
+	};
+	
+	//CUP MV-22 ===========================
+	case "CUP_B_MV22_USMC":
+	{
+		_helo setvariable ["boatCoords", [0,-1.1,-1.15], true];
+		_helo setvariable ["push",true, true];
+		_helo setvariable ["ramp",["Ramp_Top","Ramp_Bottom"], true];
+		_helo setVariable ["recover", true, true];
+		_helo setVariable ["jumpRotation", 180, true];		
+	};
+	
+	//Vanilla Blackfish ===========================
+	case "B_T_VTOL_01_infantry_F":
+	{
+		_helo setvariable ["boatCoords", [0,-1.27,-4.4], true];
+		_helo setvariable ["push",true, true];
+		_helo setvariable ["ramp",["Ramp_Top","Door_1_Source"], true];
+		_helo setVariable ["recover", true, true];
+		_helo setVariable ["jumpRotation", 180, true];
+		_helo setVariable ["jumpOffset", [0,-7.5,-6], true];		
+	};
+	
+	//OPTRE Pelicans ===========================
+	case "OPTRE_Pelican_unarmed";
+	case "OPTRE_Pelican_armed":
+	{
+		_helo setvariable ["boatCoords", [0,-4.4,1.3], true];
+		_helo setvariable ["push",false, true];
+		_helo setvariable ["ramp",["cargoDoor_1","cargoDoor_2"], true];
+		_helo setVariable ["recover", true, true];
+		_helo setVariable ["jumpRotation", 180, true];
+		_helo setVariable ["jumpOffset", [0,2.5,2], true];		
 	};
 
 	default 

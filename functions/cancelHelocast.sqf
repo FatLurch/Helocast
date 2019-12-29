@@ -26,14 +26,7 @@ _altitude = _helo getVariable["altitude", 50];
 [_helo, 500] remoteExec ["limitSpeed",_helo];
 [_helo, _altitude] remoteExec ["flyInHeight",_helo];
 
-if(count(_helo getVariable "ramp") >0) then		
-{
-	_ramp = _helo getVariable "ramp";
-	{
-		_helo animate [_x, 0];
-		_helo animateDoor [_x, 0];
-	} forEach _ramp;
-};
+[_helo, "close"] call fatLurch_fnc_rampDoor;
 
 _helo setVariable ["readyHelocast", nil, true];
 

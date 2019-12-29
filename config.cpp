@@ -92,6 +92,10 @@ class CfgPatches
 			{
 				file = "Helocast\functions\testBoat.sqf";
 			};
+			class rampDoor
+			{
+				file = "Helocast\functions\rampDoor.sqf";
+			};
 		};
 	};
 };
@@ -153,6 +157,13 @@ class Extended_Init_EventHandlers
 {
 	class air;
 	class Helicopter:air 
+	{
+        	class Fat_Lurch_Helocast_eh
+		{
+	            init = "(_this select 0) spawn fatLurch_fnc_setupHelocast";
+	        };
+   	 };
+	class Plane:air 
 	{
         	class Fat_Lurch_Helocast_eh
 		{

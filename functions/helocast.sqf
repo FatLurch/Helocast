@@ -26,7 +26,7 @@ _jumpOffset = (_helo) getVariable ["jumpOffset", [0,0,0]];
 
 [_boat, false] remoteExec ["lock", owner _boat, true];	
 
-detach _boat;	
+detach _boat;
 
 //===== Add Marker to boat =====
 //_marker = "chemlight_green" createVehicle [0,0,0];
@@ -34,6 +34,7 @@ _marker = createSimpleObject ["chemlight_green", [0,0,0]]; //Trying as simple ob
 _marker attachTo [_boat, [0,0,1.2], "drivingwheel"];
 
 _boat setVariable ["marker", _marker, true];
+
 
 [_boat, false] remoteExec ["allowDamage",owner _boat];	
 //[_helo, false] remoteExec ["allowDamage",owner _helo];
@@ -95,14 +96,7 @@ _altitude = _helo getVariable["altitude", 50];
 
 } forEach _jumpers;	//have all of the non-aircrew exit the helo
 
-if(count(_helo getVariable "ramp") >0) then		
-{
-	_ramp = _helo getVariable "ramp";
-	{
-		_helo animate [_x, 0];
-		_helo animateDoor [_x, 0];
-	} forEach _ramp;
-};
+[_helo, "close"] call fatLurch_fnc_rampDoor;
 
 [_boat, true] remoteExec ["allowDamage",0];	//These need to be remoteExec (Local Arguments) - 2019-12-08
 

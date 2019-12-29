@@ -24,15 +24,7 @@ _altOffset = _helo getVariable["altOffset", 0];
 [_helo, 8] remoteExec ["limitSpeed",_helo];
 [_helo, 6 + _altOffset] remoteExec ["flyInHeight",_helo];	//Some of the CUP assets seem to be REALLY far from the intended altitudes
 
-
-if(count(_helo getVariable "ramp") > 0) then	
-{
-	_ramp = _helo getVariable "ramp";
-	{
-		_helo animate [_x, 1];
-		_helo animateDoor [_x, 1];
-	} forEach _ramp;
-};
+[_helo, "open"] call fatLurch_fnc_rampDoor;
 
 _helo setVariable ["readyHelocast", true, true];
 

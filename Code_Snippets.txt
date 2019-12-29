@@ -1,0 +1,9 @@
+//Find pos cargo (eject point)
+deleteVehicle sphere; 
+sphere = "Sign_Sphere10cm_F" createvehicle [0,0,0]; 
+sphere attachTo [cursortarget, [0,0,0], "pos cargo"];
+
+
+//Animate Ramp
+cursorTarget animate ["Ani_Ramp", 1];
+cursorTarget animateDoor ["Ani_Ramp", 1];
