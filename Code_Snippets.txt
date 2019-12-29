@@ -5,5 +5,9 @@ sphere attachTo [cursortarget, [0,0,0], "pos cargo"];
 
 
 //Animate Ramp
-cursorTarget animate ["Ani_Ramp", 1];
-cursorTarget animateDoor ["Ani_Ramp", 1];
+cursorTarget animate ["cargoDoor_1", 1];
+cursorTarget animateDoor ["cargoDoor_1", 1];
+
+cursorTarget animate ["cargoDoor_2", 1];
+cursorTarget animateDoor ["cargoDoor_2", 1];
+
