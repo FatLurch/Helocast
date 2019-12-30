@@ -1,4 +1,4 @@
-//Last edit: 2019-12-26
+//Last edit: 2019-12-29
 
 class CfgPatches
  {
@@ -10,6 +10,15 @@ class CfgPatches
  		requiredAddons[] = {"A3_Functions_F", "A3_Characters_F"};
 		version="0.1";
 		author="Fat_Lurch";
+ 	};
+ };
+ 
+ class CfgVehicles 
+ {
+ 	class Man;
+ 	class CAMANBase: Man
+ 	{
+ 		impactEffectSpeedLimit = 6;
  	};
  };
  
