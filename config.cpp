@@ -177,7 +177,7 @@ class Cfg3DEN
 						// Returned value is the default value
 						// Used when no value is returned, or when it's of other type than NUMBER, STRING or ARRAY
 						// Custom attributes of logic entities (e.g., modules) are saved always, even when they have default value
-						defaultValue = "Assault Boat (NATO)";
+						defaultValue = "B_Boat_Transport_01_F";
 
 						//--- Optional properties
 						unique = 0; // When 1, only one entity of the type can have the value in the mission (used for example for variable names or player control)
@@ -186,7 +186,7 @@ class Cfg3DEN
 						typeName = "STRING"; // Defines data type of saved value, can be STRING, NUMBER or BOOL. Used only when control is "Combo", "Edit" or their variants
 						class Values 
 						{
-							class boat1
+							class boat0
 							{
 								name = "Assault Boat (FIA)"
 								value = "B_G_Boat_Transport_01_F"

@@ -38,7 +38,8 @@ switch(typeof _helo) do
 	case "RHS_CH_47F_light";
 	case "RHS_CH_47F": 
 	{
-		_helo setvariable ["boatCoords", [0,-3.4,-1.3], true];
+		_helo setvariable ["boatCoords", [0,-3.27,-1.3], true];
+		//_helo setvariable ["boatCoords", [[0,1.7,-1.3],[0,-3.27,-1.3]], true];
 		_helo setvariable ["push",TRUE, true];
 		_helo setvariable ["ramp",["ramp"], true];
 		_helo setVariable ["recover", true, true];
