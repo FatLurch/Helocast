@@ -126,12 +126,12 @@ class Cfg3DEN
 				class Attributes
 				{
 					// Attribute class, can be anything
-					class MyAttribute
+					class addCRRC
 					{
 						//--- Mandatory properties
 						displayName = "Add CRRC"; // Name assigned to UI control class Title
 						tooltip = "Adds a CRRC (If Supported)"; // Tooltip assigned to UI control class Title
-						property = "MyAttributeUniqueID"; // Unique config property name saved in SQM
+						property = "addCRRC"; // Unique config property name saved in SQM
 						control = "Checkbox"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
 
 						// Expression called when applying the attribute in Eden and at the scenario start
@@ -154,6 +154,128 @@ class Cfg3DEN
 						//validate = "number"; // Validate the value before saving. Can be "none", "expression", "condition", "number" or "variable"
 						condition = "objectVehicle"; // Condition for attribute to appear (see the table below)
 						typeName = "BOOL"; // Defines data type of saved value, can be STRING, NUMBER or BOOL. Used only when control is "Combo", "Edit" or their variants
+					};
+					
+					class boatType
+					{
+						//--- Mandatory properties
+						displayName = "Select CRRC Type"; // Name assigned to UI control class Title
+						tooltip = ""; // Tooltip assigned to UI control class Title
+						property = "typeCRRC"; // Unique config property name saved in SQM
+						control = "Combo"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
+
+						// Expression called when applying the attribute in Eden and at the scenario start
+						// The expression is called twice - first for data validation, and second for actual saving
+						// Entity is passed as _this, value is passed as _value
+						// %s is replaced by attribute config name. It can be used only once in the expression
+						// In MP scenario, the expression is called only on server.
+						expression = "_this setVariable ['%s',_value];";
+						//TODO expression = "if(_value) then {_this setVariable ['addBoat', true, true];};";	//_value is the boolean checkbox in Eden. _this is the target vehicle in Eden
+
+						// Expression called when custom property is undefined yet (i.e., when setting the attribute for the first time)
+						// Entity (unit, group, marker, comment etc.) is passed as _this
+						// Returned value is the default value
+						// Used when no value is returned, or when it's of other type than NUMBER, STRING or ARRAY
+						// Custom attributes of logic entities (e.g., modules) are saved always, even when they have default value
+						defaultValue = "Assault Boat (NATO)";
+
+						//--- Optional properties
+						unique = 0; // When 1, only one entity of the type can have the value in the mission (used for example for variable names or player control)
+						//validate = "number"; // Validate the value before saving. Can be "none", "expression", "condition", "number" or "variable"
+						condition = "objectVehicle"; // Condition for attribute to appear (see the table below)
+						typeName = "STRING"; // Defines data type of saved value, can be STRING, NUMBER or BOOL. Used only when control is "Combo", "Edit" or their variants
+						class Values 
+						{
+							class boat1
+							{
+								name = "Assault Boat (FIA)"
+								value = "B_G_Boat_Transport_01_F"
+							};
+							
+							class boat1
+							{							
+								name = "Assault Boat (NATO)"
+								value = "B_Boat_Transport_01_F"
+							};
+							
+							class boat2
+							{				
+								name = "Rescue Boat (NATO)"
+								value = "B_Lifeboat"
+							};
+							
+							class boat3
+							{							
+								name = "Assault Boat (Pacific NATO)"
+								value = "B_T_Boat_Transport_01_F"
+							};
+							
+							class boat4
+							{
+								name = "Rescue Boat (Pacific NATO)"
+								value = "B_T_Lifeboat"
+							};
+							
+							class boat5
+							{
+								name = "Assault Boat (Iranian CSAT)"
+								value = "O_Boat_Transport_01_F"
+							};
+							
+							class boat6
+							{
+								name = "Rescue Boat (Iranian CSAT)"
+								value = "O_Lifeboat"
+							};
+
+							class boat7
+							{
+								name = "Assault Boat (Chinese CSAT)"
+								value = "O_T_Boat_Transport_01_F"
+							};
+							
+							class boat8
+							{
+								name = "Rescue Boat (Chinese CSAT)"
+								value = "O_T_Lifeboat"
+							};
+							
+							class boat9
+							{
+								name = "Assault Boat (FIA)"
+								value = "O_G_Boat_Transport_01_F"
+							};
+							
+							class boat10
+							{
+								name = "Assault Boat (AAF)"
+								value = "I_Boat_Transport_01_F"
+							};
+							
+							class boat11
+							{
+								name = "Assault Boat (FIA)"
+								value = "I_G_Boat_Transport_01_F"
+							};
+							
+							class boat12
+							{
+								name = "Assault Boat (Syndikat)"
+								value = "I_C_Boat_Transport_01_F"
+							};
+							
+							class boat13
+							{
+								name = "Rescue Boat (Civilian)"
+								value = "C_Rubberboat"
+							};
+														
+							class boat14
+							{
+								name = "Zodiac CRRC"
+								value = "ZodiacCRRCboat"
+							};					
+						};
 					};
 				};
 			};

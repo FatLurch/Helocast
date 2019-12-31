@@ -305,7 +305,8 @@ _addBoat = _helo getVariable ["addBoat", false];
 
 if(_addBoat) then 
 {
-	[_helo] call fatlurch_fnc_addCRRC;
+	_boatType = _helo getVariable "boatType";
+	[_helo, _boatType] call fatlurch_fnc_addCRRC;
 };
 
 

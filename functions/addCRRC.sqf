@@ -6,25 +6,29 @@
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-24
  -- Last Edit: 2019-12-28
- -- Parameters: [helo] - the helo to add the boat to 
+ -- Parameters: [helo, boatType] - the helo to add the boat to, the classname of the boat to be spawned (Optional)
  -- Returns: Nothing
 
  -- Usage:
  
-[helo] call fatLurch_fnc_addCRRC;
+[helo, boatType] call fatLurch_fnc_addCRRC;
 
  ================================== START ==============================
 */
-
+params["_helo", ["_boatType", "B_Boat_Transport_01_F"]];
 
 _boatCoords=[];
+/*
 _helo = _this select 0;									
+_boatType = "B_Boat_Transport_01_F";
+if(!isNil (_this select 1)) then {_boatType = _this select 1};
+*/
 
 _hasBoat = (_helo) getVariable ["boat", false];
 
 if ((!_hasBoat)&&(!isNil {_helo getVariable "boatCoords";})) then
 {
-	boat =  "B_Boat_Transport_01_F" createVehicle [0,0,0];
+	boat =  _boatType createVehicle [0,0,0];
 	boat attachTo [_helo, _helo getVariable "boatCoords"]; 
 	_helo setvariable ["boat",boat, true];		//associate the specific boat being used with the helo for use in other scripts
 	[boat, true] remoteExec ["lock", owner boat, true];	
