@@ -5,26 +5,28 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-02-23
- -- Last Edit: 2019-12-28
- -- Parameters: [helo] - the helo to configure for helocasting
+ -- Last Edit: 2020-01-01
+ -- Parameters: [_helo, _caller] - the helo to configure for helocasting, the caller who initiated the action (e.g. player)
  -- Returns: Nothing
 
  -- Usage:
  
-[helo] call fatLurch_fnc_recoverCRRC;
+[_helo, _caller] call fatLurch_fnc_recoverCRRC;
 
  ================================== START ==============================
 */
+params["_helo", "_caller"];
+_boat = vehicle (_caller);
+_boatIndex = count(_helo getVariable "boatCoords");	//This is always the count of positions defined in the AC recovery will happen in the aft-most position (indexes increment moving aft)
 
-_helo = _this select 0;
-_boat = vehicle (_this select 1);
-
-_helo setvariable ["boat",_boat, true];
+_tmpBoat = _helo getVariable "boat";
+_tmpBoat set[_boatIndex, _boat];
+_helo setvariable ["boat",_tmpBoat, true];
 
 [_boat, _helo] remoteExec ["disableCollisionWith", owner _boat];	
 [_boat, _helo] remoteExec ["disableCollisionWith", owner _helo];	//Needs to run on the owner of boat and helo
 
-_coords = _helo getVariable["boatCoords", [0,0,0]];
+_coords = _helo getVariable["boatCoords", [0,0,0] select _boatIndex];
 
 [_boat,  [_helo,_coords]] remoteExec ["attachto", owner _boat];
 
@@ -32,31 +34,19 @@ sleep 1;
 
 {
 	moveOut _x;
-	_x setPos [0,0,0];	//Not working for human players
-	sleep 0.05;
-	//[_x,  _helo] remoteExec ["moveInCargo", owner _x];		//Suspicious "owner _x" is causing other human players to not be loaded into helo
+	_x setPos [0,0,0];	
+	sleep 0.05;	//TODO: this is likely not needed/vestigial from troubleshooting
 	[_x,  _helo] remoteExec ["moveInCargo", owner _x, true];
-	_x moveInCargo _helo;
-		
+	_x moveInCargo _helo;	
 	_x assignAsCargo _helo;
-	sleep 0.5;
+	sleep 0.4;
 	
 } forEach crew _boat;
 
 [_boat, false] remoteExec ["engineOn", owner _boat, true];
 
-//_helo flyinHeight 50;		//local/global
-[_helo, 50] remoteExec ["flyInHeight", owner _helo, true];
+_altitude = _helo getVariable["altitude", 50];
+[_helo, _altitude] remoteExec ["flyInHeight", owner _helo, true];
 
-//[_helo, false] call fatlurch_fnc_setupHelocast;
-[_helo, false] remoteExec ["call fatlurch_fnc_setupHelocast", 2];		//OBE??
-
-if(count(_helo getVariable "ramp") >0) then		
-{
-	_ramp = _helo getVariable "ramp";
-	{
-		_helo animate [_x, 0];
-		_helo animateDoor [_x, 0];
-	} forEach _ramp;
-};
+[_helo, "close"] call fatLurch_fnc_rampDoor;
 
