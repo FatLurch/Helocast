@@ -19,11 +19,8 @@ params["_helo", "_jumper"];
 
 _rot = _helo getVariable ["jumpRotation", 0];
 _jumpOffset = _helo getVariable ["jumpOffset", [0,0,0]];
-
-//_jumper action ["eject",_helo];
-//[_jumper] remoteExec ["unassignVehicle", _jumper, true];
-
-
+[_jumper] orderGetIn false; //This seems to be the needed bit to keep AI from re-entering the host helicopter
+sleep 0.01;
 
 
 //_array = ["AdvePercMstpSnonWnonDnon", "AsdvPercMstpSnonWnonDnon_relax", "AfalPercMstpSnonWnonDnon", "AmovPercMstpSnonWnonDnon", "AmovPercMstpSsurWnonDnon", "AsdvPercMstpSnonWnonDnon_goup"];
@@ -36,8 +33,10 @@ detach _jumper;	//GG
 _jumper setDir(getDir _helo +_rot);
 _jumper setVelocityModelSpace[velocityModelSpace _jumper select 0,(-1*(velocityModelSpace _jumper select 1)+2), velocityModelSpace _jumper select 2];
 _jumper switchMove _anim;
-sleep 1.9;	//1.7 seconds seems to be the magic number
-_jumper switchMove "AswmPercMstpSnonWnonDnon";	
 
-sleep 0.8;
+sleep 1.9;	//1.7 seconds seems to be the magic number
+
+_jumper switchMove "AswmPercMstpSnonWnonDnon";	
 _jumper allowdamage true;
+_jumper enableAI "MOVE";
+

@@ -15,22 +15,12 @@
 
  ================================== START ==============================
 */
-diag_log text "*** helocast ***";
+params["_helo"];
+_jumpPlan = _helo getVariable "jumpPlan";	//jumpPlan is an array that controls who and what jumps - jumpPlan = [[boat_1, [jumpers_1]], [boat_n, [jumpers_n]]];
 
-params["_helo"];	//jumpers can be "group" or "all", _jumpingBoats is the *desired* number of boats to helocast
-_jumpPlan = _helo getVariable "jumpPlan";
-
-diag_log text format["_helo: %1", _helo];
-diag_log text format["_jumpPlan: %1", _jumpPlan];
-
-diag_log text format["count: %1", count _jumpPlan];
 for "_i" from 0 to count(_jumpPlan) do 
-
 {
-	
 	if(_i==count(_jumpPlan)) exitWith{};
-	
-	diag_log text format["_i: %1", _i-1];
 	
 	if(_i>0) then 
 	{
@@ -41,19 +31,15 @@ for "_i" from 0 to count(_jumpPlan) do
 	//build variables
 	_boat = (_jumpPlan select _i) select 0;
 	_jumpers =(_jumpPlan select _i) select 1;
-	diag_log text format["_boat: %1", _boat];
-	diag_log text format["_jumpers: %1", _jumpers];	
 
 	//eject boat
 	[_helo, _boat]call fatLurch_fnc_ejectBoat;
 	sleep 1 + random 0.2;
 	
 	//eject jumpers
-	{
-		
-		if (vehicle _x == _helo) then
-		{
-			//conditional exists so jumpers who have already jumped aren't tallied multiple times
+	{	
+		if (vehicle _x == _helo) then	/*conditional exists so jumpers who have already jumped aren't transported back to the aircraft*/
+		{		
 			[_helo, _x] remoteExec ["fatLurch_fnc_eject", 0, true];
 			sleep 1 + random 0.4;
 		};
@@ -61,29 +47,14 @@ for "_i" from 0 to count(_jumpPlan) do
 
 };
 
-[_helo] call fatLurch_fnc_lightOff;
 [_helo] remoteExec ["fatLurch_fnc_lightOff", 0, true];
 
 sleep 1 + random 2;
 
+//Post-jump restore aircraft
 _altitude = _helo getVariable["altitude", 50];
-
 [_helo, 500] remoteExec ["limitSpeed",owner _helo];
 [_helo, _altitude] remoteExec ["flyInHeight",owner _helo];
-
-/*
-{
-	if(group driver _helo != group _x) then 
-	//Reset Animation State
-	{
-		[_x, ""] remoteExec ["switchMove", owner _x];
-            	_x playMove "";
-		sleep 0.7+random 0.4;
-	};
-
-} forEach jumpers;	//have all of the non-aircrew exit the helo
-*/
-
 [_helo, "close"] call fatLurch_fnc_rampDoor;
 
 
