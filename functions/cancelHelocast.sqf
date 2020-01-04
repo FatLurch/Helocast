@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-02-23
- -- Last Edit: 2019-12-27
+ -- Last Edit: 2020-01-03
  -- Parameters: None
  -- Returns: Nothing
 
@@ -15,8 +15,7 @@ call fatLurch_fnc_cancelHelocast;
 
  ================================== START ==============================
 */
-
-_helo =_this select 0;
+params["_helo"];
 
 //Add conditional here to use decel function or the commands below
 //BIS hasn't added getFlyInHeight command

@@ -17,7 +17,9 @@
  ================================== START ==============================
 */
 
-params["_helo", "_boat"];
+params["_helo", ["_boat", nil]];
+
+if(isNil {_boat}) exitWith {};
 
 _boatArray = _helo getVariable ["boatArray", [nil,nil]];
 

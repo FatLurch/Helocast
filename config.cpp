@@ -135,6 +135,10 @@ class CfgPatches
 			{
 				file = "Helocast\functions\boatIndex.sqf";
 			};
+			class defaultJumpPlan
+			{
+				file = "Helocast\functions\defaultJumpPlan.sqf";
+			};
 		};
 	};
 };

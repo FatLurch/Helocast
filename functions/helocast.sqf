@@ -16,7 +16,11 @@
  ================================== START ==============================
 */
 params["_helo"];
+
+[_helo]call fatLurch_fnc_defaultJumpPlan;	//If no jumpPlan is assigned to the vehicle, assume all boats and passengers are going at once
+
 _jumpPlan = _helo getVariable "jumpPlan";	//jumpPlan is an array that controls who and what jumps - jumpPlan = [[boat_1, [jumpers_1]], [boat_n, [jumpers_n]]];
+_boatArray = _helo getVariable "boatArray";
 
 for "_i" from 0 to count(_jumpPlan) do 
 {
@@ -30,20 +34,27 @@ for "_i" from 0 to count(_jumpPlan) do
 	
 	//build variables
 	_boat = (_jumpPlan select _i) select 0;
-	_jumpers =(_jumpPlan select _i) select 1;
+	_jumpers = (_jumpPlan select _i) select 1;
+
+	
 
 	//eject boat
+	if([_boat] call fatLurch_fnc_boatIndex != count _boatArray) then {[boat] call fatLurch_fnc_moveBoat};	//If boat isn't full aft, move it there - TODO - may make if(_i>0) then... obsolete
 	[_helo, _boat]call fatLurch_fnc_ejectBoat;
 	sleep 1 + random 0.2;
 	
 	//eject jumpers
-	{	
-		if (vehicle _x == _helo) then	/*conditional exists so jumpers who have already jumped aren't transported back to the aircraft*/
-		{		
-			[_helo, _x] remoteExec ["fatLurch_fnc_eject", 0, true];
-			sleep 1 + random 0.4;
-		};
-	} forEach _jumpers;
+	if(!isNil{_jumpers}) then 
+	{
+		{	
+			
+			if (vehicle _x == _helo) then	/*conditional exists so jumpers who have already jumped aren't transported back to the aircraft*/
+			{		
+				[_helo, _x] remoteExec ["fatLurch_fnc_eject", 0, true];
+				sleep 1 + random 0.4;
+			};
+		} forEach _jumpers;
+	};
 
 };
 
