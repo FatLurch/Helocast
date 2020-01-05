@@ -1,29 +1,31 @@
  /*
  =============================== INFORMATION ===========================
   
- -- loadBoat.sqf - This function logistically loads the nearest suitable boat into a helo. Declared as function in config.cpp (fatLurch_fnc_loadBoat)
+ -- loadBoat.sqf - This function logistically loads the selected boat into a helo. Declared as function in config.cpp (fatLurch_fnc_loadBoat)
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-26
- -- Last Edit: 2020-01-01
- -- Parameters: [helo, _boatIndex] - helo to load into, index of where the boat is going (optional)
+ -- Last Edit: 2020-01-04
+ -- Parameters: [helo, _boat, _boatIndex] - helo to load into, index of where the boat is going (optional)
  -- Returns: Nothing
 
  -- Usage:
  
-[helo, _boatIndex] call fatLurch_fnc_loadBoat;
+[helo, _boat, _boatIndex] call fatLurch_fnc_loadBoat;
 
  ================================== START ==============================
 */
-params["_helo", ["_boatIndex", 0]];
 
-_boat=[_helo] call fatLurch_fnc_loadableBoat select 1;
+params["_helo", "_boat", ["_boatIndex", 0]];
 
-_tmpBoat = _helo getVariable "boat";
-_tmpBoat set[_boatIndex, _boat];
-_helo setvariable ["boat",_tmpBoat, true];
+_boatArray = [];
+_boatArray = _helo getVariable ["boatArray", [nil,nil]];
 
-_coords = _helo getVariable["boatCoords", [0,0,0] select _boatIndex];
+_boatArray set[_boatIndex, _boat];
+_helo setvariable ["boatArray",_boatArray, true];
+
+_tmpCoords = _helo getVariable "boatCoords";
+_coords = _tmpCoords select _boatIndex;
 
 [_boat, _helo] remoteExec ["disableCollisionWith", owner _boat];	
 [_boat, _helo] remoteExec ["disableCollisionWith", owner _helo];	//Needs to run on the owner of boat and helo
@@ -35,3 +37,4 @@ _helo addEventHandler ["HandleDamage", {if (_boat iskindof 'Rubber_duck_base_F')
 [_boat, true] remoteExec ["lock", owner _boat, true];	
 
 playSound3D ["a3\sounds_f\vehicles\boat\noises\light_metal_boat_crash_armor_02.wss", _boat, false, getPosASL _boat, 3];
+

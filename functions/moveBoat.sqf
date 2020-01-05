@@ -19,6 +19,8 @@ params["_helo", "_boat"];
 
 _boatArray = _helo getVariable ["boatArray", [nil,nil]];
 
+playSound3D ["a3\sounds_f\vehicles\soft\noises\slipping_tires_05.wss", _boat, false, getPosASL _boat, 3];
+
 if([_helo, _boat]call fatLurch_fnc_boatIndex == 0) then 
 {
 	//Boat is Forward - Move it Aft

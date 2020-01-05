@@ -46,6 +46,7 @@ _boatArray set [_boatIndex, nil];
 //Depeding on the type of helo, the boat may need to be slid out the back. The variable push is the boolean for this
 if(_push) then 	//G
 {
+	playSound3D ["a3\sounds_f\vehicles\soft\noises\slipping_tires_05.wss", _boat, false, getPosASL _boat, 3];
 	while {(getposASL _boat select 2)>0.4} do
 	{
 		//Keep pushing the boat until it's 0.1 meters from the surface of the water

@@ -5,9 +5,9 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-26
- -- Last Edit: 2019-12-27
+ -- Last Edit: 2020-01-04
  -- Parameters: [helo] - the helo to search relative to
- -- Returns: Array [boolean if boat found, boat]
+ -- Returns: Array [boolean if boat found, array of boats]
 
  -- Usage:
  
@@ -17,25 +17,35 @@
  	-helo engine off
  	-boat engine off
  	-there's a suitable boat nearby via isBoat function
- 	-the helo doesn't already have a boat
  	-helo alive
  	-boat alive
  	-no crew in boat
 
  ================================== START ==============================
 */
+diag_log text "*** loadableBoat ***";
 
-_helo = _this select 0;
+params["_helo"];
 
-if(count nearestObjects[_helo, ["Rubber_duck_base_F"], 10] == 0) exitWith{[false, ""];};
+diag_log text format["_helo: %1", _helo];
 
-_nearestBoat = (nearestObjects[_helo, ["Rubber_duck_base_F"], 10]) select 0;
+acceptableBoats=[];
 
-if((!isEngineOn _helo) && (!isEngineOn _nearestBoat) && ([_nearestBoat] call fatLurch_fnc_isBoat) &&(isNil {_helo getVariable 'boat'}) && (alive _nearestBoat) && (alive _helo) && (count crew _nearestBoat==0)) then
+if(count nearestObjects[_helo, ["Rubber_duck_base_F"], 10] == 0) exitWith{[false, []]};
+
+_nearBoats = (nearestObjects[_helo, ["Rubber_duck_base_F"], 10]);
+
+diag_log text format["_nearBoats: %1", _nearBoats];
+
 {
-	[true, _nearestBoat];
-}
-else
-{
-	[false, ""];
-};
+	diag_log text format["_x: %1", _x];
+	if((!isEngineOn _helo) && (!isEngineOn _x) && ([_x] call fatLurch_fnc_isBoat) && (alive _x) && (alive _helo) && (count crew _x==0)) then
+	{
+		acceptableBoats pushBack _x;
+	};
+}forEach _nearBoats;
+
+_return = [true, acceptableBoats];
+_return
+
+

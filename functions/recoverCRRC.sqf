@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-02-23
- -- Last Edit: 2020-01-01
+ -- Last Edit: 2020-01-04
  -- Parameters: [_helo, _caller] - the helo to configure for helocasting, the caller who initiated the action (e.g. player)
  -- Returns: Nothing
 
@@ -17,29 +17,35 @@
 */
 params["_helo", "_caller"];
 _boat = vehicle (_caller);
-_boatIndex = count(_helo getVariable "boatCoords");	//This is always the count of positions defined in the AC recovery will happen in the aft-most position (indexes increment moving aft)
+	
+_boatCoords = _helo getVariable "boatCoords";
+_aftPositionIndex = (count _boatCoords) -1;
 
-_tmpBoat = _helo getVariable "boat";
-_tmpBoat set[_boatIndex, _boat];
-_helo setvariable ["boat",_tmpBoat, true];
+diag_log text format["************* _boatCoords: %1", _boatCoords];
+diag_log text format["************* _aftPositionIndex: %1", _aftPositionIndex];
 
-[_boat, _helo] remoteExec ["disableCollisionWith", owner _boat];	
-[_boat, _helo] remoteExec ["disableCollisionWith", owner _helo];	//Needs to run on the owner of boat and helo
+_boatArray = _helo getVariable ["boatArray", [nil,nil]];
+_boatArray set[_aftPositionIndex, _boat];
+_helo setvariable ["boatArray",_boatArray, true];
 
-_coords = _helo getVariable["boatCoords", [0,0,0] select _boatIndex];
+[_boat, _helo] remoteExec ["disableCollisionWith", _boat];	
+[_boat, _helo] remoteExec ["disableCollisionWith", _helo];	//Needs to run on the owner of boat and helo
 
-[_boat,  [_helo,_coords]] remoteExec ["attachto", owner _boat];
+_pos = _boatCoords select _aftPositionIndex;
+
+diag_log text format["************* _pos: %1", _pos];
+
+_boat attachTo [_helo, _pos]; 
 
 sleep 1;
 
 {
 	moveOut _x;
 	_x setPos [0,0,0];	
-	sleep 0.05;	//TODO: this is likely not needed/vestigial from troubleshooting
 	[_x,  _helo] remoteExec ["moveInCargo", owner _x, true];
 	_x moveInCargo _helo;	
 	_x assignAsCargo _helo;
-	sleep 0.4;
+	sleep 0.3 + random 0.2;
 	
 } forEach crew _boat;
 
@@ -48,5 +54,12 @@ sleep 1;
 _altitude = _helo getVariable["altitude", 50];
 [_helo, _altitude] remoteExec ["flyInHeight", owner _helo, true];
 
+
 [_helo, "close"] call fatLurch_fnc_rampDoor;
+[_helo] remoteExec ["fatLurch_fnc_lightOff", 0, true];
+
+if (_aftPositionIndex >0) then 
+{
+	[_helo, _boat] call fatLurch_fnc_moveBoat;
+};
 
