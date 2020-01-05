@@ -79,6 +79,9 @@
           <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="unloadBoat.sqf" FileName="functions\unloadBoat.sqf">
             <SubNodes />
           </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="unloadDialog.sqf" FileName="functions\unloadDialog.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
         </SubNodes>
       </ProjectNodeViewModel>
     </SubNodes>
@@ -135,5 +138,9 @@
     <string>Private variable '_recover' is not declared.</string>
     <string>Private variable '_aftPosition' is not declared.</string>
     <string>Private variable '_boatCount' is not declared.</string>
+    <string>Private variable '_return' is not declared.</string>
+    <string>Private variable '_inHelo' is not declared.</string>
+    <string>Private variable '_nearBoats' is not declared.</string>
+    <string>Private variable '_countBoatCoords' is not declared.</string>
   </FilteredAnalyzerResultItems>
 </Project>

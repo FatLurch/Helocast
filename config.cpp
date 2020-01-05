@@ -1,4 +1,7 @@
-//Last edit: 2020-01-01
+//Last edit: 2020-01-05
+
+#include "dialogs\loadBoat.h"
+#include "dialogs\unloadBoat.h"
 
 class CfgPatches
  {
@@ -138,6 +141,14 @@ class CfgPatches
 			class defaultJumpPlan
 			{
 				file = "Helocast\functions\defaultJumpPlan.sqf";
+			};	
+			class loadDialog
+			{
+				file = "Helocast\functions\loadDialog.sqf";
+			};	
+			class unloadDialog
+			{
+				file = "Helocast\functions\unloadDialog.sqf";
 			};
 		};
 	};

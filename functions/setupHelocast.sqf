@@ -297,8 +297,8 @@ _helo addEventHandler ["HandleDamage", {if ([_this select 3] call fatLurch_fnc_i
 [_helo, ["Helocast", "call fatlurch_fnc_helocast",nil,0.1, false, false, "","(_target getVariable 'readyHelocast')&&((getPosASL _target select 2) >0.5) &&((getPosASL _target select 2) <4.5) && ((speed _target) <15) && isEngineOn _target && surfaceiswater position _target"]] remoteExec ["addAction",0, true];
 [_helo, ["Cancel Helocast", "call fatlurch_fnc_cancelHelocast",nil,0, false, false, "","_target getVariable 'readyHelocast'"]] remoteExec ["addAction",0, true];
 [_helo, ["Secure CRRC", "call fatlurch_fnc_recoverCRRC",nil,10, false, false, "","[_target, _this] call fatLurch_fnc_canRecover;", 6]] remoteExec ["addAction",0, true];
-//[_helo, ["Load CRRC into Helo", "[_this select 0] call fatLurch_fnc_loadBoat;",nil,10, false, false, "","[_target] call fatLurch_fnc_loadableBoat select 0;", 8]] remoteExec ["addAction",0, true];
-//[_helo, ["Unload CRRC", "[_this select 0] call fatLurch_fnc_unloadBoat;",nil,10, false, false, "","[_target, _this] call fatLurch_fnc_canUnload;", 8]] remoteExec ["addAction",0, true];
+[_helo, ["Load CRRC into Helo", "[_this select 0] call fatLurch_fnc_loadDialog;",nil,10, false, false, "","[_target] call fatLurch_fnc_loadableBoat select 0;", 8]] remoteExec ["addAction",0, true];
+[_helo, ["Unload CRRC", "[_this select 0] call fatLurch_fnc_unloadDialog;",nil,10, false, false, "","[_target, _this] call fatLurch_fnc_canUnload;", 8]] remoteExec ["addAction",0, true];
 
 //Add a CRRC if checked in the Eden attribute for the helo
 _addBoat = _helo getVariable ["addBoat", false];

@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-26
- -- Last Edit: 2020-01-04
+ -- Last Edit: 2020-01-05
  -- Parameters: [helo] - the helo to search relative to
  -- Returns: Array [boolean if boat found, array of boats]
 
@@ -20,26 +20,29 @@
  	-helo alive
  	-boat alive
  	-no crew in boat
+ 	-Room on the helicopter for another boat
 
  ================================== START ==============================
 */
-diag_log text "*** loadableBoat ***";
 
 params["_helo"];
 
-diag_log text format["_helo: %1", _helo];
+if(count nearestObjects[_helo, ["Rubber_duck_base_F"], 10] == 0) exitWith{[false, []]};
+
+_boatCount = _helo getVariable["boatCount", 0];
+_boatCoords = _helo getVariable "boatCoords";
+_boatCoordsCount = count _boatCoords;
+
+if(!(_boatCount<_boatCoordsCount)) exitWith {[false, []]};
 
 acceptableBoats=[];
 
-if(count nearestObjects[_helo, ["Rubber_duck_base_F"], 10] == 0) exitWith{[false, []]};
-
 _nearBoats = (nearestObjects[_helo, ["Rubber_duck_base_F"], 10]);
 
-diag_log text format["_nearBoats: %1", _nearBoats];
 
 {
-	diag_log text format["_x: %1", _x];
-	if((!isEngineOn _helo) && (!isEngineOn _x) && ([_x] call fatLurch_fnc_isBoat) && (alive _x) && (alive _helo) && (count crew _x==0)) then
+	_inHelo = _x getVariable["inHelo", false];
+	if((!isEngineOn _helo) && (!isEngineOn _x) && ([_x] call fatLurch_fnc_isBoat) && (alive _x) && (alive _helo) && (count crew _x==0) && (! _inHelo)) then
 	{
 		acceptableBoats pushBack _x;
 	};

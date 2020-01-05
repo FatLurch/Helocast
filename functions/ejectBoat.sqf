@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2020-01-01
- -- Last Edit: 2020-01-03
+ -- Last Edit: 2020-01-05
  -- Parameters: [_helo, _boat] - The helo the boat is being ejected from and the boat itself
  -- Returns: None
 
@@ -28,6 +28,12 @@ _push = _helo getVariable ["push", false];
 [_boat, false] remoteExec ["lock", owner _boat, true];	
 
 if(_boat==nil) exitWith{};
+
+_boatCount = _helo getVariable "boatCount";
+_boatCount = _boatCount-1;
+_helo setVariable["boatCount", _boatCount];
+
+_boat setVariable ["inHelo", false, true];
 
 detach _boat;
 _helo setVariable ["readyHelocast", nil, true];

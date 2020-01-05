@@ -21,8 +21,13 @@ params["_helo", "_boat", ["_boatIndex", 0]];
 _boatArray = [];
 _boatArray = _helo getVariable ["boatArray", [nil,nil]];
 
+_boatCount = _helo getVariable["boatCount", 0];
+_boatCount = _boatCount+1;
+_helo setVariable["boatCount", _boatCount];
+
 _boatArray set[_boatIndex, _boat];
 _helo setvariable ["boatArray",_boatArray, true];
+_boat setVariable ["inHelo", true, true];
 
 _tmpCoords = _helo getVariable "boatCoords";
 _coords = _tmpCoords select _boatIndex;
