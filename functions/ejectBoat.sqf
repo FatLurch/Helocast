@@ -31,7 +31,7 @@ if(_boat==nil) exitWith{};
 
 _boatCount = _helo getVariable "boatCount";
 _boatCount = _boatCount-1;
-_helo setVariable["boatCount", _boatCount];
+_helo setVariable["boatCount", _boatCount, true];
 
 _boat setVariable ["inHelo", false, true];
 

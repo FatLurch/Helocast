@@ -27,7 +27,7 @@ _boat setVariable ["inHelo", false, true];
 
 _boatCount = _helo getVariable "boatCount";
 _boatCount = _boatCount-1;
-_helo setVariable["boatCount", _boatCount];
+_helo setVariable["boatCount", _boatCount, true];
 
 _boat setPosASL [_boatPos select 0, _boatPos select 1, ((getPosASL _helo) select 2)+0.15];
 

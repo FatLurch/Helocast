@@ -150,6 +150,10 @@ class CfgPatches
 			{
 				file = "Helocast\functions\unloadDialog.sqf";
 			};
+			class countBoats
+			{
+				file = "Helocast\functions\countBoats.sqf";
+			};
 		};
 	};
 };

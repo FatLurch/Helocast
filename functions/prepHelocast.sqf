@@ -27,7 +27,7 @@ _altOffset = _helo getVariable["altOffset", 0];
 
 _helo setVariable ["readyHelocast", true, true];
 
-_helo setVariable ["altitude", getPosATL _helo select 2];
+_helo setVariable ["altitude", getPosATL _helo select 2, true];
 
 [_helo] call fatLurch_fnc_lightOn;
 [_helo] remoteExec ["fatLurch_fnc_lightOn", 0, true];

@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-02-23
- -- Last Edit: 2020-01-03
+ -- Last Edit: 2020-01-05
  -- Parameters: [helo] - the helo to configure for helocasting
  -- Returns: Nothing
 
@@ -39,7 +39,6 @@ switch(typeof _helo) do
 	case "RHS_CH_47F_light";
 	case "RHS_CH_47F": 
 	{
-		//_helo setvariable ["boatCoords", [0,-3.27,-1.3], true];
 		_helo setvariable ["boatCoords", [[0,1.7,-1.3],[0,-3.27,-1.3]], true];
 		_helo setvariable ["push",TRUE, true];
 		_helo setvariable ["ramp",["ramp"], true];
@@ -53,7 +52,7 @@ switch(typeof _helo) do
 	case "rhsusf_CH53E_USMC";
 	case "rhsusf_CH53E_USMC_D": 
 	{
-		_helo setvariable ["boatCoords", [[0,0.8,-2.59]], true];
+		_helo setvariable ["boatCoords", [[0,5.75,-2.59],[0,0.8,-2.59]], true];
 		_helo setvariable ["push",TRUE, true];
 		_helo setvariable ["ramp",["ramp_bottom", "ramp_top"], true];
 		_helo setVariable ["recover", true, true];
@@ -145,15 +144,13 @@ switch(typeof _helo) do
 		_helo setvariable ["ramp",["Doors"], true];
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", -90, true];
-		_helo setVariable ["altOffset", -1, true];
-		
+		_helo setVariable ["altOffset", -1, true];	
 	};
-
 
 	//CUP MH-47 ===========================
 	case "CUP_B_MH47E_USA":
 	{
-		_helo setvariable ["boatCoords", [[0,-3.5,2.1]], true];
+		_helo setvariable ["boatCoords", [[0,-3.5,2.1], [0,2.2,2.25]], true];
 		_helo setvariable ["push",true, true];
 		_helo setvariable ["ramp",["Ani_Ramp"], true];	
 		_helo setVariable ["recover", true, true];
@@ -166,7 +163,7 @@ switch(typeof _helo) do
 	//CUP CH-53 ===========================
 	case "CUP_B_CH53E_USMC":
 	{
-		_helo setvariable ["boatCoords", [[0,1,-2.82]], true];
+		_helo setvariable ["boatCoords", [[0,1.6,-2.7], [0,6,-2.7]], true];
 		_helo setvariable ["push",true, true];
 		_helo setvariable ["ramp",["ramp_bottom","ramp_top"], true];
 		_helo setVariable ["recover", true, true];
@@ -208,7 +205,7 @@ switch(typeof _helo) do
 	//Konyo MH-47 Ramp ===========================	
 	case "kyo_MH47E_Ramp":
 	{
-		_helo setvariable ["boatCoords", [[0.1,-1.42,-0.48]], true];
+		_helo setvariable ["boatCoords", [[0.1,-1.42,-0.48],[0.1,3.7,-0.3]], true];
 		_helo setvariable ["push",true, true];
 		_helo setvariable ["ramp",[], true];
 		_helo setVariable ["recover", true, true];
@@ -216,10 +213,10 @@ switch(typeof _helo) do
 		_helo setVariable ["altOffset", -1.5, true];
 		_helo setVariable ["rampInvert", true, true];			
 	};
-	//Konyo MH-47 Ramp ===========================	
+	//Konyo MH-47 Base ===========================	
 	case "kyo_MH47E_base":
 	{
-		_helo setvariable ["boatCoords", [[0.1,-1.42,-0.48]], true];
+		_helo setvariable ["boatCoords", [[0.1,-1.42,-0.48],[0.1,3.7,-0.3]], true];
 		_helo setvariable ["push",true, true];
 		_helo setvariable ["ramp",["Ani_Ramp"], true];
 		_helo setVariable ["recover", true, true];
@@ -232,7 +229,7 @@ switch(typeof _helo) do
 	//Konyo MH-47 HC ===========================
 	case "kyo_MH47E_HC":
 	{
-		_helo setvariable ["boatCoords", [[0.1,-1.46,-0.95]], true];
+		_helo setvariable ["boatCoords", [[0.1,-1.46,-0.95], [0.1,3.7,-0.8]], true];
 		_helo setvariable ["push",true, true];
 		_helo setvariable ["ramp",["Ani_Ramp"], true];
 		_helo setVariable ["recover", true, true];

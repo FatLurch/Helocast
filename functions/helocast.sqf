@@ -13,6 +13,9 @@
 [helo]call fatLurch_fnc_helocast;
 [helo]spawn fatLurch_fnc_helocast; ***(Required if not called from addAction)***
 
+*** Assumes a jump plan being associated with the helo via the jumpPlan variable:
+jumpPlan=[[boat1,  [jumpers1]],[boat2, [jumpers2]]]
+
  ================================== START ==============================
 */
 params["_helo"];

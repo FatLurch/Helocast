@@ -25,10 +25,8 @@ ctrlSetText [202, _helo call BIS_fnc_netId];	//send a reference for the helo to 
 	 
 	//Add VALUES to the dialog in the background
 	lbSetData [200, _indexRef, _x call BIS_fnc_netId];
-	};
-	
+	};	
 }forEach _boatArray;
-
 
 _index1=lbAdd[201, "Left"];
 lbSetData [201, _index1, "[6, -120]"];

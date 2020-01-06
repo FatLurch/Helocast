@@ -37,6 +37,6 @@ else
 	_boatArray set[1,nil];
 	_boatArray set[0,_boat];
 };
-_helo setVariable["boatArray", _boatArray];
+_helo setVariable["boatArray", _boatArray, true];
 
 

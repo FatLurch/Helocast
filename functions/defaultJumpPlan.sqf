@@ -6,7 +6,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2020-01-03
- -- Last Edit: 2020-01-03
+ -- Last Edit: 2020-01-05
  -- Parameters: Helo to be evaluated
  -- Returns: Nothing
 
@@ -14,30 +14,44 @@
  
 [_helo]call fatLurch_fnc_defaultJumpPlan;
 
+jumpPlan=[[boat1,  [jumpers1]],[boat2, [jumpers2]]]
+
  ================================== START ==============================
 */
+diag_log text "*** defaultJumpPlan ***";
 
 params["_helo"];
+
+diag_log text format["_helo: %1", _helo];
+
 _jumpPlan = _helo getVariable ["jumpPlan", []];
+
+diag_log text format["_jumpPlan at start: %1", _jumpPlan];
+
+if(count _jumpPlan > 0) exitWith{diag_log text "EXITING";};
+
 _boatArray = _helo getVariable ["boatArray", nil];
-
-if(count _jumpPlan > 0) exitWith{};
-
+_boatCount = [_helo] call fatLurch_fnc_countBoats;
 _jumpers = [_helo] call fatLurch_fnc_nonFlightCrew;
 
-switch (count _boatArray) do {
-    	case 0: {_jumpPlan = [nil,_jumpers];};
+diag_log text format["_boatArray: %1", _boatArray];
+diag_log text format["_boatCount: %1", _boatCount];
+diag_log text format["_jumpers: %1", _jumpers];
+
+switch (_boatCount) do 
+{
+    	case 0: {_jumpPlan = [[nil,_jumpers]];};
     
 	case 1: 
     	{
     		//1 boat in the aircraft
     		if(!isNil{_boatArray select 0}) then /*find where the boat is in the aircraft*/
     		{
-    			_jumpPlan = [_boatArray select 0, _jumpers];
+    			_jumpPlan = [[_boatArray select 0, _jumpers]];
     		}
     		else 
     		{
-    			_jumpPlan = [_boatArray select 1, _jumpers];
+    			_jumpPlan = [[_boatArray select 1, _jumpers]];
     		};
 	};
 	
@@ -47,7 +61,7 @@ switch (count _boatArray) do {
 	};
 };
 
-_helo setVariable ["jumpPlan", _jumpPlan];
+_helo setVariable ["jumpPlan", _jumpPlan, true];
 
 
 

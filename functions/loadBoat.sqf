@@ -23,7 +23,7 @@ _boatArray = _helo getVariable ["boatArray", [nil,nil]];
 
 _boatCount = _helo getVariable["boatCount", 0];
 _boatCount = _boatCount+1;
-_helo setVariable["boatCount", _boatCount];
+_helo setVariable["boatCount", _boatCount, true];
 
 _boatArray set[_boatIndex, _boat];
 _helo setvariable ["boatArray",_boatArray, true];
