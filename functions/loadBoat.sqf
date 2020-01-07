@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-26
- -- Last Edit: 2020-01-04
+ -- Last Edit: 2020-01-06
  -- Parameters: [helo, _boat, _boatIndex] - helo to load into, index of where the boat is going (optional)
  -- Returns: Nothing
 
@@ -20,10 +20,6 @@ params["_helo", "_boat", ["_boatIndex", 0]];
 
 _boatArray = [];
 _boatArray = _helo getVariable ["boatArray", [nil,nil]];
-
-_boatCount = _helo getVariable["boatCount", 0];
-_boatCount = _boatCount+1;
-_helo setVariable["boatCount", _boatCount, true];
 
 _boatArray set[_boatIndex, _boat];
 _helo setvariable ["boatArray",_boatArray, true];

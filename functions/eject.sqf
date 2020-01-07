@@ -30,9 +30,10 @@ _anim = animArray select floor random count animArray;
 _jumper setPos [0,0,0];	//GG
 _jumper attachTo [_helo, _jumpOffset, "pos cargo"];	//GG
 detach _jumper;	//GG
-_jumper setDir(getDir _helo +_rot);
+
 _jumper setVelocityModelSpace[velocityModelSpace _jumper select 0,(-1*(velocityModelSpace _jumper select 1)+2), velocityModelSpace _jumper select 2];
 _jumper switchMove _anim;
+_jumper setDir(getDir _helo +_rot);
 
 sleep 1.9;	//1.7 seconds seems to be the magic number
 

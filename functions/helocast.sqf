@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-02-23
- -- Last Edit: 2020-01-03
+ -- Last Edit: 2020-01-06
  -- Returns: Nothing
 
  -- Usage:
@@ -23,17 +23,19 @@ params["_helo"];
 [_helo]call fatLurch_fnc_defaultJumpPlan;	//If no jumpPlan is assigned to the vehicle, assume all boats and passengers are going at once
 
 _jumpPlan = _helo getVariable "jumpPlan";	//jumpPlan is an array that controls who and what jumps - jumpPlan = [[boat_1, [jumpers_1]], [boat_n, [jumpers_n]]];
-_boatArray = _helo getVariable "boatArray";
+_boatCoords = _helo getVariable "boatCoords";
 
 for "_i" from 0 to count(_jumpPlan) do 
 {
 	if(_i==count(_jumpPlan)) exitWith{};
 	
+	/*
 	if(_i>0) then 
 	{
 		[_helo, _helo getVariable "boatArray" select 0] call fatLurch_fnc_moveBoat;
 		sleep 1 + random 0.2;
 	};
+	*/
 	
 	//build variables
 	_boat = (_jumpPlan select _i) select 0;
@@ -42,7 +44,7 @@ for "_i" from 0 to count(_jumpPlan) do
 	
 
 	//eject boat
-	if([_boat] call fatLurch_fnc_boatIndex != count _boatArray) then {[boat] call fatLurch_fnc_moveBoat};	//If boat isn't full aft, move it there - TODO - may make if(_i>0) then... obsolete
+	if([_helo, _boat] call fatLurch_fnc_boatIndex != count _boatCoords - 1) then {[_helo,_boat] call fatLurch_fnc_moveBoat};	//If boat isn't full aft, move it there - TODO - may make if(_i>0) then... obsolete
 	[_helo, _boat]call fatLurch_fnc_ejectBoat;
 	sleep 1 + random 0.2;
 	

@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-02-23
- -- Last Edit: 2020-01-04
+ -- Last Edit: 2020-01-06
  -- Parameters: [_helo, _caller] - the helo to configure for helocasting, the caller who initiated the action (e.g. player)
  -- Returns: Nothing
 
@@ -17,23 +17,14 @@
 */
 params["_helo", "_caller"];
 _boat = vehicle (_caller);
-	
+_boatArray = _helo getVariable ["boatArray", [nil,nil]];
 _boatCoords = _helo getVariable "boatCoords";
 _aftPositionIndex = (count _boatCoords) -1;
-
-diag_log text format["************* _boatCoords: %1", _boatCoords];
-diag_log text format["************* _aftPositionIndex: %1", _aftPositionIndex];
-
-_boatArray = _helo getVariable ["boatArray", [nil,nil]];
-_boatArray set[_aftPositionIndex, _boat];
-_helo setvariable ["boatArray",_boatArray, true];
 
 [_boat, _helo] remoteExec ["disableCollisionWith", _boat];	
 [_boat, _helo] remoteExec ["disableCollisionWith", _helo];	//Needs to run on the owner of boat and helo
 
 _pos = _boatCoords select _aftPositionIndex;
-
-diag_log text format["************* _pos: %1", _pos];
 
 _boat attachTo [_helo, _pos]; 
 
@@ -58,8 +49,25 @@ _altitude = _helo getVariable["altitude", 50];
 [_helo, "close"] call fatLurch_fnc_rampDoor;
 [_helo] remoteExec ["fatLurch_fnc_lightOff", 0, true];
 
-if (_aftPositionIndex >0) then 
+if (_aftPositionIndex ==1 && isNil{_boatArray select 0}) then 
 {
+	//Boat was recovered aft and there's room to slide it up
 	[_helo, _boat] call fatLurch_fnc_moveBoat;
+	_boatArray set[0, _boat];	//Note the boat was stored forward
 };
+
+if (_aftPositionIndex ==1 && !isNil{_boatArray select 0}) then 
+{
+	//Boat was recovered aft and there's NO room to slide it up
+	_boatArray set[1, _boat];	//Note the boat was stored aft
+};
+
+if (_aftPositionIndex ==0) then 
+{
+	//Single position aircraft
+	_boatArray set[0, _boat];	//Note the boat was stored forward
+};
+
+
+	_helo setvariable ["boatArray",_boatArray, true];
 

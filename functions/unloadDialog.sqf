@@ -20,8 +20,18 @@ ctrlSetText [202, _helo call BIS_fnc_netId];	//send a reference for the helo to 
 	_vehName = _x getVariable ["hcname", ""]; 
 	 _text = getText(configFile >> "CfgVehicles" >> typeOf _x >> "displayName");
 	_name="";
+	private _posLabel="";
+	private _positionIndex = 0;
+	_positionIndex = [_helo, _x] call fatLurch_fnc_boatIndex;
+	
+	switch (_positionIndex) do 
+	{
+	    case 0: { _posLabel = " - (Fwd)" };
+	    case 1: { _posLabel = " - (Aft)" };
+	};
+	
 	 if(_vehName != "") then {_name = format[" - %1", _vehName];};
-	 _indexRef=lbAdd[200, _text +_name];
+	 _indexRef=lbAdd[200, _text +_name+_posLabel];
 	 
 	//Add VALUES to the dialog in the background
 	lbSetData [200, _indexRef, _x call BIS_fnc_netId];

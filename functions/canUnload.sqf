@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-26
- -- Last Edit: 2020-01-05
+ -- Last Edit: 2020-01-06
  -- Parameters: [_target, _this] _target is the helo and _this is the caller in an addAction
  -- Returns: boolean (TRUE = OK to unload)
 
@@ -24,7 +24,7 @@
 _helo = _this select 0;
 _caller = _this select 1;
 
-_boatCount = _helo getVariable["boatCount", 0];
+_boatCount = [_helo] call fatLurch_fnc_countBoats;
 
 ((_boatCount > 0) && (vehicle _caller == _caller) && (!isEngineOn _helo))
 

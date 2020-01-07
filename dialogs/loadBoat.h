@@ -6,9 +6,15 @@ class loadBoat
 	//200 - boat - 				lbData [200, lbCurSel 200]
 	//201 - position index - 	lbData [201, lbCurSel 201]
 	//202 - helo - 				ctrlText 202
+	//203 - OK Button
 		
-	onUnload ="if(_this select 1==1) then {[ctrlText 202 call BIS_fnc_objectFromNetId, lbData [200, lbCurSel 200] call BIS_fnc_objectFromNetId, parseNumber lbData [201, lbCurSel 201]] call fatLurch_fnc_loadBoat;};";
-		
+	onLoad="ctrlEnable [203, false];";
+	
+	onUnload ="if((_this select 1==1) && (lbCurSel 200 != -1) && (lbCurSel 201 != -1)) then {[ctrlText 202 call BIS_fnc_objectFromNetId, lbData [200, lbCurSel 200] call BIS_fnc_objectFromNetId, call compile lbData [201, lbCurSel 201]] call fatLurch_fnc_loadBoat;};";
+	
+	onMouseMoving="if((lbCurSel 200 != -1) && (lbCurSel 201 != -1)) then {ctrlEnable [203,true];}else{ctrlEnable [203, false];};";
+	onMouseButtonClick="if((lbCurSel 200 != -1) && (lbCurSel 201 != -1)) then {ctrlEnable [203,true];}else{ctrlEnable [203, false];};";
+	
 	class ControlsBackground
 	{
 		class Background
@@ -68,7 +74,7 @@ class loadBoat
 		{
 			action = "closeDialog 1";	//ADDED - emulates OK action
 			type = 1;
-			idc = -1;
+			idc = 203;
 			x = safeZoneX + safeZoneW * 0.4265625;
 			y = safeZoneY + safeZoneH * 0.52685186;
 			w = safeZoneW * 0.0453125;
