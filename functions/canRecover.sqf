@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-25
- -- Last Edit: 2019-12-26
+ -- Last Edit: 2020-01-04
  -- Parameters: [_target, _this]
  	_target: addAction target (aka the helo)
  	_this: addAction caller (aka the player)
@@ -17,9 +17,15 @@
 
  ================================== START ==============================
 */
+params["_helo", "_user"];
 
-_helo = _this select 0;
-_user = _this select 1;
 _veh = vehicle _user;
+_boatArray = _helo getVariable ["boatArray", []];
+_boatCoords  = _helo getVariable ["boatCoords", [nil, nil]];
+_recover = _helo getVariable ["recover", false];
 
-([_veh] call fatLurch_fnc_isBoat) && (isNil {_helo getVariable 'boat'}) && ({_helo getVariable 'recover'})
+_boatCount=0;
+
+_boatCount = count _boatArray;
+
+([_veh] call fatLurch_fnc_isBoat) && (_boatCount < count _boatCoords) && (_recover) &&(isNil{_boatArray select (count _boatArray)})                                               

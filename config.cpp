@@ -1,4 +1,7 @@
-//Last edit: 2019-12-29
+//Last edit: 2020-01-05
+
+#include "dialogs\loadBoat.h"
+#include "dialogs\unloadBoat.h"
 
 class CfgPatches
  {
@@ -19,6 +22,12 @@ class CfgPatches
  	class CAMANBase: Man
  	{
  		impactEffectSpeedLimit = 6;
+ 	};
+ 	
+ 	class Ship;
+ 	class Rubber_Duck_Base_F: Ship
+ 	{
+ 		impactEffectSpeedLimit = 7;
  	};
  };
  
@@ -104,6 +113,46 @@ class CfgPatches
 			class rampDoor
 			{
 				file = "Helocast\functions\rampDoor.sqf";
+			};
+			class nonFlightCrew
+			{
+				file = "Helocast\functions\nonFlightCrew.sqf";
+			};
+			class groupNonFlightCrew
+			{
+				file = "Helocast\functions\groupNonFlightCrew.sqf";
+			};
+			class addMarker
+			{
+				file = "Helocast\functions\addMarker.sqf";
+			};
+			class ejectBoat
+			{
+				file = "Helocast\functions\ejectBoat.sqf";
+			};
+			class moveBoat
+			{
+				file = "Helocast\functions\moveBoat.sqf";
+			};
+			class boatIndex
+			{
+				file = "Helocast\functions\boatIndex.sqf";
+			};
+			class defaultJumpPlan
+			{
+				file = "Helocast\functions\defaultJumpPlan.sqf";
+			};	
+			class loadDialog
+			{
+				file = "Helocast\functions\loadDialog.sqf";
+			};	
+			class unloadDialog
+			{
+				file = "Helocast\functions\unloadDialog.sqf";
+			};
+			class countBoats
+			{
+				file = "Helocast\functions\countBoats.sqf";
 			};
 		};
 	};
@@ -276,6 +325,34 @@ class Cfg3DEN
 								value = "ZodiacCRRCboat"
 							};					
 						};
+					};	
+					
+					class boatCount
+					{
+						displayName = "Select Number of CRRCs"; // Name assigned to UI control class Title
+						tooltip = ""; // Tooltip assigned to UI control class Title
+						property = "boatCount"; // Unique config property name saved in SQM
+						control = "Combo"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
+						expression = "_this setVariable ['%s',_value];";
+						defaultValue = "1";
+						unique = 0; // When 1, only one entity of the type can have the value in the mission (used for example for variable names or player control)
+						condition = "objectVehicle"; // Condition for attribute to appear (see the table below)
+						typeName = "NUMBER"; // Defines data type of saved value, can be STRING, NUMBER or BOOL. Used only when control is "Combo", "Edit" or their variants
+						class Values 
+						{
+							
+							class value1
+							{							
+								name = "1"
+								value = 1
+							};
+							
+							class value2
+							{				
+								name = "2"
+								value = 2
+							};	
+						};				
 					};
 				};
 			};

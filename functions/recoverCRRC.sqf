@@ -5,58 +5,61 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-02-23
- -- Last Edit: 2019-12-28
- -- Parameters: [helo] - the helo to configure for helocasting
+ -- Last Edit: 2020-01-04
+ -- Parameters: [_helo, _caller] - the helo to configure for helocasting, the caller who initiated the action (e.g. player)
  -- Returns: Nothing
 
  -- Usage:
  
-[helo] call fatLurch_fnc_recoverCRRC;
+[_helo, _caller] call fatLurch_fnc_recoverCRRC;
 
  ================================== START ==============================
 */
+params["_helo", "_caller"];
+_boat = vehicle (_caller);
+	
+_boatCoords = _helo getVariable "boatCoords";
+_aftPositionIndex = (count _boatCoords) -1;
 
-_helo = _this select 0;
-_boat = vehicle (_this select 1);
+diag_log text format["************* _boatCoords: %1", _boatCoords];
+diag_log text format["************* _aftPositionIndex: %1", _aftPositionIndex];
 
-_helo setvariable ["boat",_boat, true];
+_boatArray = _helo getVariable ["boatArray", [nil,nil]];
+_boatArray set[_aftPositionIndex, _boat];
+_helo setvariable ["boatArray",_boatArray, true];
 
-[_boat, _helo] remoteExec ["disableCollisionWith", owner _boat];	
-[_boat, _helo] remoteExec ["disableCollisionWith", owner _helo];	//Needs to run on the owner of boat and helo
+[_boat, _helo] remoteExec ["disableCollisionWith", _boat];	
+[_boat, _helo] remoteExec ["disableCollisionWith", _helo];	//Needs to run on the owner of boat and helo
 
-_coords = _helo getVariable["boatCoords", [0,0,0]];
+_pos = _boatCoords select _aftPositionIndex;
 
-[_boat,  [_helo,_coords]] remoteExec ["attachto", owner _boat];
+diag_log text format["************* _pos: %1", _pos];
+
+_boat attachTo [_helo, _pos]; 
 
 sleep 1;
 
 {
 	moveOut _x;
-	_x setPos [0,0,0];	//Not working for human players
-	sleep 0.05;
-	//[_x,  _helo] remoteExec ["moveInCargo", owner _x];		//Suspicious "owner _x" is causing other human players to not be loaded into helo
+	_x setPos [0,0,0];	
 	[_x,  _helo] remoteExec ["moveInCargo", owner _x, true];
-	_x moveInCargo _helo;
-		
+	_x moveInCargo _helo;	
 	_x assignAsCargo _helo;
-	sleep 0.5;
+	sleep 0.3 + random 0.2;
 	
 } forEach crew _boat;
 
 [_boat, false] remoteExec ["engineOn", owner _boat, true];
 
-//_helo flyinHeight 50;		//local/global
-[_helo, 50] remoteExec ["flyInHeight", owner _helo, true];
+_altitude = _helo getVariable["altitude", 50];
+[_helo, _altitude] remoteExec ["flyInHeight", owner _helo, true];
 
-//[_helo, false] call fatlurch_fnc_setupHelocast;
-[_helo, false] remoteExec ["call fatlurch_fnc_setupHelocast", 2];		//OBE??
 
-if(count(_helo getVariable "ramp") >0) then		
+[_helo, "close"] call fatLurch_fnc_rampDoor;
+[_helo] remoteExec ["fatLurch_fnc_lightOff", 0, true];
+
+if (_aftPositionIndex >0) then 
 {
-	_ramp = _helo getVariable "ramp";
-	{
-		_helo animate [_x, 0];
-		_helo animateDoor [_x, 0];
-	} forEach _ramp;
+	[_helo, _boat] call fatLurch_fnc_moveBoat;
 };
 

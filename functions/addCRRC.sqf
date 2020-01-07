@@ -5,34 +5,35 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-24
- -- Last Edit: 2019-12-28
- -- Parameters: [helo, boatType] - the helo to add the boat to, the classname of the boat to be spawned (Optional)
+ -- Last Edit: 2020-01-05
+ -- Parameters: [helo, boatType, _boatIndex] - the helo to add the boat to, the classname of the boat to be spawned (Optional)
  -- Returns: Nothing
 
  -- Usage:
  
-[helo, boatType] call fatLurch_fnc_addCRRC;
+[helo, boatType, _boatIndex] call fatLurch_fnc_addCRRC;
 
  ================================== START ==============================
 */
-params["_helo", ["_boatType", "B_Boat_Transport_01_F"]];
 
-_boatCoords=[];
-/*
-_helo = _this select 0;									
-_boatType = "B_Boat_Transport_01_F";
-if(!isNil (_this select 1)) then {_boatType = _this select 1};
-*/
+params["_helo", ["_boatType", "B_Boat_Transport_01_F"], ["_boatIndex",0]];
 
-_hasBoat = (_helo) getVariable ["boat", false];
+_boatCoords=_helo getVariable "boatCoords";
+_boatArray = _helo getVariable ["boatArray", [nil,nil]];
 
-if ((!_hasBoat)&&(!isNil {_helo getVariable "boatCoords";})) then
+_boatCount = _helo getVariable["boatCount", 0];
+_boatCount = _boatCount+1;
+_helo setVariable["boatCount", _boatCount, true];
+
+if ((isNil{_boatArray select _boatIndex})&&(!isNil{_boatCoords select _boatIndex})) then
 {
-	boat =  _boatType createVehicle [0,0,0];
-	boat attachTo [_helo, _helo getVariable "boatCoords"]; 
-	_helo setvariable ["boat",boat, true];		//associate the specific boat being used with the helo for use in other scripts
+	boat = _boatType createVehicle [0,0,0];
+	boat attachTo [_helo, _boatCoords select _boatIndex]; 
+	_boatArray set[_boatIndex, boat];
+	_helo setVariable ["boatArray", _boatArray, true];
 	[boat, true] remoteExec ["lock", owner boat, true];	
+	boat setVariable ["inHelo", true, true];
 };
 
-[boat, _helo] remoteExec ["disableCollisionWith", boat, true];	
-[_helo, boat] remoteExec ["disableCollisionWith", _helo, true];	//Needs to run on the owner of boat and helo
+[boat, _helo] remoteExecCall ["disableCollisionWith", 0, boat];
+[_helo, boat] remoteExecCall ["disableCollisionWith", 0, _helo];

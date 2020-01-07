@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectRootNode Name="Helocast" FileName="">
+    <SubNodes>
+      <ProjectNodeViewModel xsi:type="ProjectFolderNodeViewModel" Name="functions" FileName="functions">
+        <SubNodes>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="addCRRC.sqf" FileName="functions\addCRRC.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="addMarker.sqf" FileName="functions\addMarker.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="boatIndex.sqf" FileName="functions\boatIndex.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="cancelHelocast.sqf" FileName="functions\cancelHelocast.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="canRecover.sqf" FileName="functions\canRecover.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="canUnload.sqf" FileName="functions\canUnload.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="defaultJumpPlan.sqf" FileName="functions\defaultJumpPlan.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="eject.sqf" FileName="functions\eject.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="ejectBoat.sqf" FileName="functions\ejectBoat.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="groupNonFlightCrew.sqf" FileName="functions\groupNonFlightCrew.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="helocast.sqf" FileName="functions\helocast.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="isBoat.sqf" FileName="functions\isBoat.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="lightOff.sqf" FileName="functions\lightOff.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="lightOn.sqf" FileName="functions\lightOn.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="loadableBoat.sqf" FileName="functions\loadableBoat.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="loadBoat.sqf" FileName="functions\loadBoat.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="loadDialog.sqf" FileName="functions\loadDialog.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="moveBoat.sqf" FileName="functions\moveBoat.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="nonFlightCrew.sqf" FileName="functions\nonFlightCrew.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="prepHelocast.sqf" FileName="functions\prepHelocast.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="rampDoor.sqf" FileName="functions\rampDoor.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="recoverCRRC.sqf" FileName="functions\recoverCRRC.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="removeMarker.sqf" FileName="functions\removeMarker.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="setupBoat.sqf" FileName="functions\setupBoat.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="setupHelocast.sqf" FileName="functions\setupHelocast.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="testBoat.sqf" FileName="functions\testBoat.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="unloadBoat.sqf" FileName="functions\unloadBoat.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+          <ProjectNodeViewModel xsi:type="ProjectFileNodeViewModel" Name="unloadDialog.sqf" FileName="functions\unloadDialog.sqf">
+            <SubNodes />
+          </ProjectNodeViewModel>
+        </SubNodes>
+      </ProjectNodeViewModel>
+    </SubNodes>
+  </ProjectRootNode>
+  <FilteredAnalyzerResultItems>
+    <string>Private variable '_boatCoords' is not declared.</string>
+    <string>Private variable '_boatArray' is not declared.</string>
+    <string>Private variable '_marker' is not declared.</string>
+    <string>Private variable '_markerType' is not declared.</string>
+    <string>Private variable '_index' is not declared.</string>
+    <string>Private variable '_boatIndex' is not declared.</string>
+    <string>Public variable 'fatLurch_fnc_lightOff' may be used before being assigned a value.</string>
+    <string>Public variable 'fatLurch_fnc_rampDoor' may be used before being assigned a value.</string>
+    <string>Private variable '_altitude' is not declared.</string>
+    <string>Private variable '_helo' is not declared.</string>
+    <string>Private variable '_veh' is not declared.</string>
+    <string>Syntax Error ''recover''.</string>
+    <string>Expected semicolon.</string>
+    <string>'getVariable' does not have a signature with left hand type 'Any' and right hand type 'Nothing'.</string>
+    <string>Public variable 'fatLurch_fnc_isBoat' may be used before being assigned a value.</string>
+    <string>Private variable '_caller' is not declared.</string>
+    <string>Private variable '_x' is not declared.</string>
+    <string>Private variable '_rot' is not declared.</string>
+    <string>Private variable '_justOffset' is not declared.</string>
+    <string>Private variable '_anim' is not declared.</string>
+    <string>Public variable 'fatLurch_fnc_addMarker' may be used before being assigned a value.</string>
+    <string>Public variable 'fatLurch_fnc_boatIndex' may be used before being assigned a value.</string>
+    <string>Private variable '_push' is not declared.</string>
+    <string>Public variable 'fatLurch_fnc_nonFlightCrew' may be used before being assigned a value.</string>
+    <string>Private variable '_boat' is not declared.</string>
+    <string>Private variable '_jumpOffset' is not declared.</string>
+    <string>Private variable '_countBoats' is not declared.</string>
+    <string>Public variable 'fatLurch_fnc_ejectBoat' may be used before being assigned a value.</string>
+    <string>Public variable 'fatLurch_fnc_moveBoat' may be used before being assigned a value.</string>
+    <string>Public variable 'fatLurch_fnc_groupNonFlightCrew' may be used before being assigned a value.</string>
+    <string>Private variable '_nearestBoat' is not declared.</string>
+    <string>Public variable 'fatLurch_fnc_loadableBoat' may be used before being assigned a value.</string>
+    <string>Private variable '_tmpBoat' is not declared.</string>
+    <string>Private variable '_coords' is not declared.</string>
+    <string>Public variable 'fatLurch_fnc_lightOn' may be used before being assigned a value.</string>
+    <string>Private variable '_altOffset' is not declared.</string>
+    <string>Private variable '_kill' is not declared.</string>
+    <string>Private variable '_op' is not declared.</string>
+    <string>Private variable '_ramp' is not declared.</string>
+    <string>Excpected ':'.</string>
+    <string>Private variable '_addBoat' is not declared.</string>
+    <string>Private variable '_count' is not declared.</string>
+    <string>Private variable '_boatType' is not declared.</string>
+    <string>Public variable 'fatlurch_fnc_addCRRC' may be used before being assigned a value.</string>
+    <string>Private variable '_boatPos' is not declared.</string>
+    <string>Private variable '_jumpPlan' is not declared.</string>
+    <string>Public variable 'iag_lo' may be used before being assigned a value.</string>
+    <string>Private variable '_jumpers' is not declared.</string>
+    <string>Private variable '_recover' is not declared.</string>
+    <string>Private variable '_aftPosition' is not declared.</string>
+    <string>Private variable '_boatCount' is not declared.</string>
+    <string>Private variable '_return' is not declared.</string>
+    <string>Private variable '_inHelo' is not declared.</string>
+    <string>Private variable '_nearBoats' is not declared.</string>
+    <string>Private variable '_countBoatCoords' is not declared.</string>
+    <string>Private variable '_vehName' is not declared.</string>
+    <string>Private variable '_text' is not declared.</string>
+    <string>Private variable '_name' is not declared.</string>
+    <string>Private variable '_indexRef' is not declared.</string>
+    <string>Private variable '_index1' is not declared.</string>
+    <string>Private variable '_index2' is not declared.</string>
+    <string>Private variable '_index3' is not declared.</string>
+  </FilteredAnalyzerResultItems>
+</Project>
