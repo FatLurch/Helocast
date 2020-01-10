@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-12-26
- -- Last Edit: 2020-01-05
+ -- Last Edit: 2020-01-06
  -- Parameters: [helo] - the helo to search relative to
  -- Returns: Array [boolean if boat found, array of boats]
 
@@ -29,7 +29,7 @@ params["_helo"];
 
 if(count nearestObjects[_helo, ["Rubber_duck_base_F"], 10] == 0) exitWith{[false, []]};
 
-_boatCount = _helo getVariable["boatCount", 0];
+_boatCount = [_helo] call fatLurch_fnc_countBoats;
 _boatCoords = _helo getVariable "boatCoords";
 _boatCoordsCount = count _boatCoords;
 

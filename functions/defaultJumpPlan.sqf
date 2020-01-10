@@ -6,7 +6,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2020-01-03
- -- Last Edit: 2020-01-05
+ -- Last Edit: 2020-01-06
  -- Parameters: Helo to be evaluated
  -- Returns: Nothing
 
@@ -18,25 +18,16 @@ jumpPlan=[[boat1,  [jumpers1]],[boat2, [jumpers2]]]
 
  ================================== START ==============================
 */
-diag_log text "*** defaultJumpPlan ***";
 
 params["_helo"];
 
-diag_log text format["_helo: %1", _helo];
-
 _jumpPlan = _helo getVariable ["jumpPlan", []];
-
-diag_log text format["_jumpPlan at start: %1", _jumpPlan];
 
 if(count _jumpPlan > 0) exitWith{diag_log text "EXITING";};
 
 _boatArray = _helo getVariable ["boatArray", nil];
 _boatCount = [_helo] call fatLurch_fnc_countBoats;
 _jumpers = [_helo] call fatLurch_fnc_nonFlightCrew;
-
-diag_log text format["_boatArray: %1", _boatArray];
-diag_log text format["_boatCount: %1", _boatCount];
-diag_log text format["_jumpers: %1", _jumpers];
 
 switch (_boatCount) do 
 {

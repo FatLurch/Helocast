@@ -25,10 +25,6 @@ detach _boat;
 [_boat, false] remoteExec ["lock", owner _boat, true];	
 _boat setVariable ["inHelo", false, true];
 
-_boatCount = _helo getVariable "boatCount";
-_boatCount = _boatCount-1;
-_helo setVariable["boatCount", _boatCount, true];
-
 _boat setPosASL [_boatPos select 0, _boatPos select 1, ((getPosASL _helo) select 2)+0.15];
 
 playSound3D ["a3\sounds_f\vehicles\boat\noises\light_metal_boat_crash_armor_02.wss", _boat, false, getPosASL _boat, 3];
