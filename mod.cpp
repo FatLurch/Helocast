@@ -3,7 +3,7 @@ picture = "Helocast\data\Helocast_256.paa";
 logoSmall = "Helocast\data\Helocast_256.paa";
 logo = "Helocast\data\Helocast_256.paa";
 logoOver = "Helocast\data\Helocast_256.paa";
-action = "//http://forums.tsog-milsim.com/";
+action = "http://tsog-milsim.com/";
 tooltipOwned = "Helocast";
 dlcColor[] = 
 {
