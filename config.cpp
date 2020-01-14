@@ -368,14 +368,15 @@ class Extended_Init_EventHandlers
 	{
         	class Fat_Lurch_Helocast_eh
 		{
-	            init = "(_this select 0) spawn fatLurch_fnc_setupHelocast";
+	            init = "(_this select 0) spawn fatLurch_fnc_setupHelocast;";
+	            //init = "(_this select 0) spawn fatLurch_fnc_setupHelocast; rhsArray=['RHS_CH_47F_10','RHS_CH_47F_light','RHS_CH_47F','rhsusf_CH53E_USMC','rhsusf_CH53E_USMC_D'];if((typeOf (_this select 0) in rhsArray)) then {[_this select 0] spawn fatLurch_fnc_reattachRHS};";
 	        };
    	 };
 	class Plane:air 
 	{
         	class Fat_Lurch_Helocast_eh
 		{
-	            init = "(_this select 0) spawn fatLurch_fnc_setupHelocast";
+	            init = "(_this select 0) spawn fatLurch_fnc_setupHelocast;";
 	        };
    	 };
    	 class Boat_F;
@@ -385,9 +386,7 @@ class Extended_Init_EventHandlers
 		{
 	            init = "(_this select 0) spawn fatLurch_fnc_setupBoat";
 	        };
-   	 }
-   	 
-	
+   	 };	
 };
 
 class Extended_Killed_EventHandlers 
