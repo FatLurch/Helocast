@@ -273,6 +273,18 @@ switch(typeof _helo) do
 		_helo setVariable ["jumpOffset", [0,-7,-3], true];			
 	};
 
+	//RHS MI-8s ===========================
+	case "rhsgref_cdf_b_reg_Mi8amt":
+	{
+		_helo setvariable ["boatCoords", [[0,1,-0.1]], true];
+		_helo setvariable ["push",true, true];
+		_helo setvariable ["ramp",["RearDoors"], true];
+		_helo setVariable ["recover", true, true];
+		_helo setVariable ["altOffset", -1.5, true];
+		//_helo setVariable ["jumpRotation", 180, true];
+		//_helo setVariable ["jumpOffset", [0,-7,-3], true];			
+	};
+
 	default 
 	{
 		_kill=true;
