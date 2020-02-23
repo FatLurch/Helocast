@@ -260,16 +260,17 @@ switch(typeof _helo) do
 		_helo setVariable ["jumpOffset", [0,-7.5,-6], true];		
 	};
 	
-	//OPTRE Pelicans ===========================
-	case "OPTRE_Pelican_unarmed";
-	case "OPTRE_Pelican_armed":
+	
+	//Legion Studios LAAT ===========================
+	case "ls_laat";
+	case "ls_laat_ab":
 	{
-		_helo setvariable ["boatCoords", [[0,-4.4,1.3]], true];
-		_helo setvariable ["push",false, true];
-		_helo setvariable ["ramp",["cargoDoor_1","cargoDoor_2"], true];
-		_helo setVariable ["recover", true, true];
+		_helo setvariable ["boatCoords", [[0,-3,0.2]], true];
+		_helo setvariable ["push",true, true];
+		_helo setvariable ["ramp",["laat_ramp_open"], true];
+		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", 180, true];
-		_helo setVariable ["jumpOffset", [0,2.5,2], true];		
+		_helo setVariable ["jumpOffset", [0,-7,-3], true];			
 	};
 
 	default 

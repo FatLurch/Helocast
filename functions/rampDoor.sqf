@@ -48,6 +48,7 @@ if(count(helo getVariable "ramp") > 0) then
 	_ramp = helo getVariable "ramp";
 	{
 		helo animate [_x, rampOp];
+		helo animateSource [_x, rampOp];
 		helo animateDoor [_x, rampOp];
 	} forEach _ramp;
 };
