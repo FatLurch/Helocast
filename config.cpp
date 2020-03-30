@@ -196,7 +196,7 @@ class Cfg3DEN
 						// Returned value is the default value
 						// Used when no value is returned, or when it's of other type than NUMBER, STRING or ARRAY
 						// Custom attributes of logic entities (e.g., modules) are saved always, even when they have default value
-						defaultValue = "FALSE";
+						defaultValue = "TRUE";
 
 						//--- Optional properties
 						unique = 0; // When 1, only one entity of the type can have the value in the mission (used for example for variable names or player control)

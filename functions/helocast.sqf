@@ -65,7 +65,7 @@ for "_i" from 0 to count(_jumpPlan) do
 
 [_helo] remoteExec ["fatLurch_fnc_lightOff", 0, true];
 
-sleep 1 + random 2;
+sleep 3 + random 2;
 
 //Post-jump restore aircraft
 _altitude = _helo getVariable["altitude", 50];
