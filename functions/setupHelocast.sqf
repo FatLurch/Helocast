@@ -5,7 +5,7 @@
   
  -- By Fat_Lurch (fat.lurch@gmail.com) for ARMA 3
  -- Created: 2019-02-23
- -- Last Edit: 2020-01-06
+ -- Last Edit: 2020-03-30
  -- Parameters: [helo] - the helo to configure for helocasting
  -- Returns: Nothing
 
@@ -271,6 +271,16 @@ switch(typeof _helo) do
 		_helo setVariable ["recover", false, true];
 		_helo setVariable ["jumpRotation", 180, true];
 		_helo setVariable ["jumpOffset", [0,-7,-3], true];			
+	};
+
+	//FFAA CH-47  ===========================	
+	case "ffaa_famet_ch47_mg":
+	{
+		_helo setvariable ["boatCoords", [[0,2.65,-1.5],[0,-2.0,-1.5]], true];
+		_helo setvariable ["push",true, true];
+		_helo setvariable ["ramp",["ani_Rampa"], true];
+		_helo setVariable ["recover", true, true];
+		_helo setVariable ["jumpRotation", 180, true];
 	};
 
 	default 

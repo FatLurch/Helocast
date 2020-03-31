@@ -28,8 +28,6 @@ ctrlSetText [202, _helo call BIS_fnc_netId];	//send a reference for the helo to 
 	 
 	//Add VALUES to the dialog in the background
 	lbSetData [200, _indexRef, _x call BIS_fnc_netId];
-
-	diag_log text format["************ Boat _x var: %1", _x];
 }forEach _boats;
 
 if(count _boatCoords ==1) then
